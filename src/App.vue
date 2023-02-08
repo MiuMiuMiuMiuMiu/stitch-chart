@@ -1,17 +1,20 @@
 <template>
   <div>
     <WelcomeUser name="Anna" />
+    <CreateChart />
   </div>
   
 </template>
 
 <script>
 import WelcomeUser from './components/WelcomeUser.vue'
+import CreateChart from './components/CreateChart.vue';
 
 export default {
   name: 'App',
   components: {
-    WelcomeUser
+    WelcomeUser,
+    CreateChart
   }
 }
 </script>
