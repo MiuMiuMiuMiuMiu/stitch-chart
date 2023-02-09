@@ -2,8 +2,10 @@
   <h2>Choose chart:</h2>
 
   <div class="chart-choice">
-    <h3 v-on:click="choice" v-for="option of options" v-bind:key="option">{{option}}</h3>
+    <h3 v-bind:class="{'white': clicked == option, 'black': clicked !== option}" v-on:click="choice(option)" v-for="option of options" v-bind:key="option">{{ option }}</h3>
   </div>
+
+  {{ clicked }}
 
 </template>
   
@@ -15,12 +17,14 @@ export default {
       options: [
         "Blank",
         "Mittens"
-      ]
+      ],
+      clicked: ""
     }
   },
   methods: {
-    choice() {
-      console.log("Clicked")
+    choice(choice) {
+      this.clicked = choice;
+      console.log(choice)
     }
   }
 }
