@@ -5,13 +5,18 @@
       v-for="option of options" v-bind:key="option.id">{{ option.option }}</h3>
   </div>
   <div class="gauge-input">
-    <GaugeInput/>
+    <GaugeInput />
+    
+  </div>
+  <div class="generate-chart">
+    <GenerateButton /> 
   </div>
 
 </template>
   
 <script>
 import GaugeInput from './GaugeInput.vue';
+import GenerateButton from './GenerateButton.vue';
 
 export default {
     name: "ChartOption",
@@ -36,7 +41,7 @@ export default {
             console.log(choice);
         }
     },
-    components: { GaugeInput }
+    components: { GaugeInput, GenerateButton }
 }
 </script>
 
