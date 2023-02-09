@@ -1,13 +1,18 @@
 <template>
   <div class="chart-input-container">
-    <h1>Create chart component</h1>
+    <ChartOption />
   </div>
     
 </template>
 
 <script>
+import ChartOption from "./ChartOption.vue"
+
 export default {
-    name: 'CreateChart'
+    name: 'CreateChart',
+    components: {
+      ChartOption
+    }
 }
 </script>
 
@@ -16,5 +21,6 @@ export default {
   border: black 1px solid;
   width: 600px;
   margin: 0 auto;
+  padding: 30px;
 }
 </style>
