@@ -1,32 +1,42 @@
 <template>
   <h2>Choose chart:</h2>
-
   <div class="chart-choice">
-    <h3 v-bind:class="{'white': clicked == option, 'black': clicked !== option}" v-on:click="choice(option)" v-for="option of options" v-bind:key="option">{{ option }}</h3>
+    <h3 v-bind:class="{ 'selected': clicked === option.id, 'disabled': clicked !== option.id }" v-on:click="choice(option.id)"
+      v-for="option of options" v-bind:key="option.id">{{ option.option }}</h3>
   </div>
-
-  {{ clicked }}
+  <div class="gauge-input">
+    <GaugeInput/>
+  </div>
 
 </template>
   
 <script>
+import GaugeInput from './GaugeInput.vue';
+
 export default {
-  name: 'ChartOption',
-  data() {
-    return {
-      options: [
-        "Blank",
-        "Mittens"
-      ],
-      clicked: ""
-    }
-  },
-  methods: {
-    choice(choice) {
-      this.clicked = choice;
-      console.log(choice)
-    }
-  }
+    name: "ChartOption",
+    data() {
+        return {
+            options: [
+                {
+                    id: 1,
+                    option: "Blank"
+                },
+                {
+                    id: 2,
+                    option: "Mitten"
+                }
+            ],
+            clicked: Number,
+        };
+    },
+    methods: {
+        choice(choice) {
+            this.clicked = choice;
+            console.log(choice);
+        }
+    },
+    components: { GaugeInput }
 }
 </script>
 
@@ -39,5 +49,9 @@ h3 {
 .chart-choice {
   display: flex;
   justify-content: space-evenly;
+}
+
+.selected {
+  border: black 1px solid;
 }
 </style>
