@@ -18,9 +18,8 @@
   </div>
   -->
   <div class="generate-button">
-    <GenerateButton /> 
+    <GenerateButton :textToConvert="text" /> 
   </div>
-  {{ text }}
 </template>
   
 <script>

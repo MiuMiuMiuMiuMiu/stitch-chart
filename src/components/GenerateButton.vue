@@ -1,10 +1,30 @@
 <template>
-    <button>Generate chart</button>
+    <button @click="convertToBinary(textToConvert)">Generate chart</button>
 </template>
 
 <script>
 export default {
-    name: "GenerateButton"
+    name: "GenerateButton",
+    props: {
+      textToConvert: String
+    },
+    data () {
+      return {
+        convertedText: '',
+      }
+    },
+    methods: {
+      convertToBinary(text) {
+        /*Convert string to binary code*/
+        this.convertedText = ''; //Empty variable
+        if (text.length > 0) {
+          for (var i = 0; i < text.length; i++) {
+          this.convertedText += text[i].charCodeAt(0).toString(2) + "";
+        }
+        }
+        console.log(this.convertedText)
+      }
+    }
 }
 </script>
 
