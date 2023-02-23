@@ -1,24 +1,26 @@
 <template>
-  <h2>Options:</h2>
-  <div class="chart-choice">
-    <h3 v-bind:class="{ 'selected': clicked === option.id, 'disabled': clicked !== option.id }" v-on:click="choice(option.id)"
-      v-for="option of options" v-bind:key="option.id">{{ option.option }}</h3>
-  </div>
-  <h2>Text:</h2>
-  <div class="gauge-input">
-    <textarea v-model="text" type="text" id="text" min="1" max="50"></textarea>
-  </div>
-  <!--
-  <h2>Gauge Input:</h2>
-  <div class="gauge-input">
-    <label for="gauge-height">Height: </label>
-    <input v-model="gaugeHeight" type="number" id="gauge-height" min="1" max="50">
-    <label for="gauge-width">Width: </label>
-    <input v-model="gaugeWidth" type="number" id="gauge-width" min="1" max="50"> 
-  </div>
-  -->
-  <div class="generate-button">
-    <GenerateButton :textToConvert="text" /> 
+  <div class="chart-input-container">
+    <h2>Options:</h2>
+    <div class="chart-choice">
+      <h3 v-bind:class="{ 'selected': clicked === option.id, 'disabled': clicked !== option.id }" v-on:click="choice(option.id)"
+        v-for="option of options" v-bind:key="option.id">{{ option.option }}</h3>
+    </div>
+    <h2>Text:</h2>
+    <div class="gauge-input">
+      <textarea v-model="text" type="text" id="text" min="1" max="50"></textarea>
+    </div>
+    <!--
+    <h2>Gauge Input:</h2>
+    <div class="gauge-input">
+      <label for="gauge-height">Height: </label>
+      <input v-model="gaugeHeight" type="number" id="gauge-height" min="1" max="50">
+      <label for="gauge-width">Width: </label>
+      <input v-model="gaugeWidth" type="number" id="gauge-width" min="1" max="50"> 
+    </div>
+    -->
+    <div class="generate-button">
+      <GenerateButton :textToConvert="text" /> 
+    </div>
   </div>
 </template>
   
@@ -58,6 +60,13 @@ export default {
 </script>
 
 <style scoped>
+.chart-input-container {
+  border: black 1px solid;
+  width: 600px;
+  margin: 0 auto;
+  padding: 30px;
+}
+
 h2,
 h3 {
   text-align: left;
