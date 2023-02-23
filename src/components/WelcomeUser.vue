@@ -17,3 +17,8 @@ export default {
 <style scoped>
 </style>
 -->
+<style>
+h1 {
+  text-align: center;
+}
+</style>
