@@ -19,7 +19,7 @@ export default {
         this.convertedText = ''; //Empty variable
         if (text.length > 0) {
           for (var i = 0; i < text.length; i++) {
-          this.convertedText += text[i].charCodeAt(0).toString(2) + "";
+          this.convertedText += text[i].charCodeAt(0).toString(2).padStart(8,'0') + "";
         }
         }
         console.log(this.convertedText)
