@@ -1,6 +1,6 @@
 <template>
   <div>
-    <WelcomeUser name="Anna" />
+    <WelcomeUser />
     <CreateChart />
   </div>
   
