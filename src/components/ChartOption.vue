@@ -103,11 +103,4 @@ textarea {
 .selected {
   color: royalblue;
 }
-
-.generate-button {
-  display: flex;
-  justify-content: center;
-  margin-top: 10px;
-}
-
 </style>

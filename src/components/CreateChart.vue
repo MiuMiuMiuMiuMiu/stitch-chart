@@ -1,26 +1,27 @@
 <template>
-  <div class="chart-input-container">
-    <ChartOption />
+  <div>
+    <h1>Class</h1>
+    {{ text }}
+    <div id="grid">   
+    </div>
   </div>
-    
+  
 </template>
 
 <script>
-import ChartOption from "./ChartOption.vue"
 
 export default {
     name: 'CreateChart',
-    components: {
-      ChartOption
+    props: {
+      text: String
     }
 }
 </script>
 
 <style scoped>
-.chart-input-container {
-  border: black 1px solid;
-  width: 600px;
-  margin: 0 auto;
-  padding: 30px;
+
+#grid {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
 }
 </style>
