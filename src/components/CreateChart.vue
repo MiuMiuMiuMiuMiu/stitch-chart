@@ -1,6 +1,6 @@
 <template>
   <div>
-    <h1>Class</h1>
+    <h2>Chart:</h2>
     <div id="grid" :style="gridStyle">
       <template v-for="(item, index) in text" :key="index">
         <div class="grid-cell" v-bind:style= "[item === '0' ? {'background-color': 'grey'} : {'background-color': 'white'}]">

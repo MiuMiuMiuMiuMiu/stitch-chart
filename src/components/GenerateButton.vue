@@ -1,11 +1,10 @@
 <template>
   <div class="button-container">
-    <button @click="convertToBinary(textToConvert)">Generate chart</button>
+    <button @click="convertToMorse(textToConvert)">Generate chart</button>
   </div>
   <div v-if="convertedText > 0">
-    <CreateChart :text="convertedText" /> 
+    <CreateChart :text="convertedText" />
   </div>
-  
 </template>
 
 <script>
@@ -19,6 +18,35 @@ export default {
   data() {
     return {
       convertedText: '',
+      morseCode: { 
+        a: ".-",
+        b: "-...",
+        c: "-.-.",
+        d: "-..",
+        e: ".",
+        f: "..-.",
+        g: "--.",
+        h: "....",
+        i: "..",
+        j: ".---",
+        k: "-.-",
+        l: ".-..",
+        m: "--",
+        n: "-.",
+        o: "---",
+        p: ".--.",
+        q: "--.-",
+        r: ".-.",
+        s: "...",
+        t: "-",
+        u: "..-",
+        v: "...-",
+        w: ".--",
+        x: "-..-",
+        y: "-.--",
+        z: "--.."
+      }
+      
     }
   },
   methods: {
@@ -30,9 +58,42 @@ export default {
           this.convertedText += text[i].charCodeAt(0).toString(2).padStart(8, '0') + "";
         }
       }
+    },
+    convertToMorse(text) {
+      /*Convert string to morse code*/
+      this.convertedText = ''; //Empty variable
+      const textArray = text.toLowerCase().split(""); //Create list from input text (hello => [h,e,l,l,o])
+      if (text.length > 0) {
+        for (var i = 0; i < text.toLowerCase().length; i++) {
+          if(textArray[i] === ' ') {
+            //In morse code, space between words are separated by a space equal to seven dots.
+            this.convertedText +=  ".......";
+          } else {
+            this.convertedText += this.morseCode[textArray[i]];
+          }
+        }
+        this.textToBinary(this.convertedText);
+      }
+    },
+    textToBinary(text) {
+      //Convert morse code to 0s and 1s to generate chart
+      this.convertedText = ''; //Empty variable
+      for (var i = 0; i < text.length; i++) {
+        if(text[i] === "-") {
+          this.convertedText += "1"
+        } else {
+          this.convertedText += "0"
+        }
+        
+      }
       console.log(this.convertedText)
     }
   },
+  /*
+  mounted() {
+    // methods can be called in lifecycle hooks, or other methods!
+    this.convertToMorse()
+  },*/
   components: {
     CreateChart,
   }
