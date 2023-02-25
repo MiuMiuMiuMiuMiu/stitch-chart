@@ -2,7 +2,7 @@
   <div class="button-container">
     <button @click="convertToMorse(textToConvert)">Generate chart</button>
   </div>
-  <div v-if="convertedText > 0">
+  <div v-if="convertedText.length > 0">
     <CreateChart :text="convertedText" />
   </div>
 </template>
@@ -86,7 +86,7 @@ export default {
         }
         
       }
-      console.log(this.convertedText)
+      console.log(this.convertedText.length)
     }
   },
   /*
