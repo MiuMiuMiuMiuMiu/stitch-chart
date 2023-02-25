@@ -2,15 +2,15 @@
   <div class="chart-input-container">
     <h2>Options:</h2>
     <div class="chart-choice">
-      <h3 v-bind:class="{ 'selected': clicked === option.id, 'disabled': clicked !== option.id }" v-on:click="choice(option.id)"
-        v-for="option of options" v-bind:key="option.id">{{ option.option }}</h3>
+      <h3 v-bind:class="{ 'selected': clicked === option.id, 'disabled': clicked !== option.id }"
+        v-on:click="choice(option.id)" v-for="option of options" v-bind:key="option.id">{{ option.option }}</h3>
     </div>
     <h2>Text:</h2>
     <div class="gauge-input">
       <textarea v-model="text" type="text" id="text" min="1" max="50"></textarea>
     </div>
     <div class="generate-button">
-      <GenerateButton :textToConvert="text" :userChoice="clicked"/> 
+      <GenerateButton :textToConvert="text" :userChoice="clicked" />
     </div>
   </div>
 </template>
@@ -19,31 +19,34 @@
 import GenerateButton from './GenerateButton.vue';
 
 export default {
-    name: "ChartOption",
-    data() {
-        return {
-            options: [
-                {
-                    id: 1,
-                    option: "Binary"
-                },
-                {
-                    id: 2,
-                    option: "Morse"
-                }
-            ],
-            clicked: NaN,
-            text: "",
-        };
-    },
-    methods: {
-        choice(choice) {
-            this.clicked = choice;
+  name: "ChartOption",
+  data() {
+    return {
+      options: [
+        {
+          id: 1,
+          option: "Binary"
+        },
+        {
+          id: 2,
+          option: "Morse"
         }
-    },
-    components: {  
-      GenerateButton
+      ],
+      clicked: NaN,
+      text: "",
+    };
+  },
+  methods: {
+    choice(choice) {
+      this.clicked = choice;
     }
+  },
+  mounted() {
+    this.clicked = 1;
+  }, 
+  components: {
+  GenerateButton
+}
 }
 </script>
 
@@ -59,22 +62,23 @@ h2,
 h3 {
   text-align: left;
 }
+
 .chart-choice {
   display: flex;
   justify-content: space-evenly;
 }
 
-.chart-choice > h3 {
+.chart-choice>h3 {
   cursor: pointer;
 }
 
 /*Input*/
 input[type=number] {
-    margin-bottom: 20px;
-    margin-right: 20px;
-    width: 80px;
-    padding: 5px 10px;
-    box-sizing: border-box;
+  margin-bottom: 20px;
+  margin-right: 20px;
+  width: 80px;
+  padding: 5px 10px;
+  box-sizing: border-box;
 }
 
 textarea {
@@ -88,6 +92,7 @@ textarea {
   font-size: 16px;
   resize: none;
 }
+
 .selected {
   color: royalblue;
 }
