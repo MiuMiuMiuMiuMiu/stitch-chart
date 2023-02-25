@@ -1,6 +1,6 @@
 <template>
-  <div>
-    <h2>Chart:</h2>
+  <h2>Chart:</h2>
+  <div class="grid-container">
     <div id="grid" :style="gridStyle">
       <template v-for="(item, index) in text" :key="index">
         <div class="grid-cell" v-bind:style="[item === '0' ? {'background-color': 'grey'} : {'background-color': 'white'}]">
@@ -33,6 +33,12 @@ export default {
 </script>
 
 <style scoped>
+.grid-container {
+  width: 100%;
+  overflow: auto;
+  padding: 1px;
+}
+
 #grid {
   display: grid;
   grid-gap: 1px;
