@@ -1,6 +1,6 @@
 <template>
   <div class="button-container">
-    <button @click="convertToMorse(textToConvert)">Generate chart</button>
+    <button @click="convertCode(textToConvert)">Generate chart</button>
   </div>
   <div v-if="convertedText.length > 0">
     <CreateChart :text="convertedText" />
@@ -13,8 +13,18 @@ import CreateChart from './CreateChart.vue';
 export default {
   name: "GenerateButton",
   props: {
-    textToConvert: String
+    textToConvert: String,
+    userChoice: Number
   },
+  /*
+  watch: {
+    // whenever question changes, this function will run
+    userChoice(newChoice, oldChoice) {
+      if (newChoice != oldChoice) {
+        this.convertCode(this.textToConvert);
+      }
+    }
+  },*/
   data() {
     return {
       convertedText: '',
@@ -50,6 +60,14 @@ export default {
     }
   },
   methods: {
+    convertCode(text) {
+      if (this.userChoice === 1) {
+        this.convertToBinary(text)
+      }
+      else if (this.userChoice === 2) {
+        this.convertToMorse(text)
+      }
+    },
     convertToBinary(text) {
       /*Convert string to binary code*/
       this.convertedText = ''; //Empty variable
@@ -64,14 +82,15 @@ export default {
       this.convertedText = ''; //Empty variable
       const textArray = text.toLowerCase().split(""); //Create list from input text (hello => [h,e,l,l,o])
       if (text.length > 0) {
-        for (var i = 0; i < text.toLowerCase().length; i++) {
-          if(textArray[i] === ' ') {
+        for (var i = 0; i < text.toLowerCase().length; i++) { //Make text in lower case
+          if(textArray[i] === ' ') { //If there is a space add 7 dots
             //In morse code, space between words are separated by a space equal to seven dots.
             this.convertedText +=  ".......";
-          } else {
+          } else { //Else add the converted text
             this.convertedText += this.morseCode[textArray[i]];
           }
         }
+        //Convert text to binary as component CreateChart.vue translates 1s and 0s to grid-cells.
         this.textToBinary(this.convertedText);
       }
     },
@@ -84,15 +103,13 @@ export default {
         } else {
           this.convertedText += "0"
         }
-        
       }
-      console.log(this.convertedText.length)
     }
   },
   /*
   mounted() {
     // methods can be called in lifecycle hooks, or other methods!
-    this.convertToMorse()
+    //this.convertToMorse()
   },*/
   components: {
     CreateChart,
