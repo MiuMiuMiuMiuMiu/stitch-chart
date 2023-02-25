@@ -1,26 +1,45 @@
 <template>
-  <div class="chart-input-container">
-    <ChartOption />
+  <div>
+    <h2>Chart:</h2>
+    <div id="grid" :style="gridStyle">
+      <template v-for="(item, index) in text" :key="index">
+        <div class="grid-cell" v-bind:style= "[item === '0' ? {'background-color': 'grey'} : {'background-color': 'white'}]">
+        </div>
+      </template>
+    </div>
   </div>
-    
 </template>
 
 <script>
-import ChartOption from "./ChartOption.vue"
-
 export default {
-    name: 'CreateChart',
-    components: {
-      ChartOption
+  name: 'CreateChart',
+  props: {
+    text: String
+  },
+  data() {
+    return {
+      columns: parseInt(this.text.length) 
     }
+  },
+  computed: {
+    gridStyle() {
+      return {
+        gridTemplateColumns: `repeat(${this.text.length}, 50px)`, //Amount of columns from length of text
+        //border: 'black solid 1px'
+      }
+    },
+  }
 }
 </script>
 
 <style scoped>
-.chart-input-container {
-  border: black 1px solid;
-  width: 600px;
-  margin: 0 auto;
-  padding: 30px;
+#grid {
+  display: grid;
+  grid-gap: 1px;
+}
+
+.grid-cell {
+  box-shadow: 0px 0px 0px 1px black;
+  height: 50px;
 }
 </style>

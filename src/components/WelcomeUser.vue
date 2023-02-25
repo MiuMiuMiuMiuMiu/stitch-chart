@@ -1,15 +1,12 @@
 <template>
     <h1>
-      Welcome to Froggy {{name}}!
+      Nerdy Knitting Chart Generator!
     </h1>
 </template>
 
 <script>
 export default {
-  name: 'WelcomeUser',
-  props: {
-    name: String
-  }
+  name: 'WelcomeUser'
 }
 </script>
 
