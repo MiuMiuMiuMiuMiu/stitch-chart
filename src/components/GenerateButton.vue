@@ -123,11 +123,10 @@ button {
   background-color: #264653;
   border: none;
   color: white;
-  padding: 15px 32px;
+  padding: 15px;
   text-align: center;
   text-decoration: none;
   display: inline-block;
-  border-radius: 25px;
   cursor: pointer;
 }
 
