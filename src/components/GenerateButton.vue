@@ -119,8 +119,8 @@ export default {
 
 <style>
 button {
+  font-family: 'Press Start 2P', cursive;
   background-color: #264653;
-  /* Green */
   border: none;
   color: white;
   padding: 15px 32px;

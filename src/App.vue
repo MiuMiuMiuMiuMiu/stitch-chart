@@ -28,7 +28,6 @@ body {
     padding: 0px;
 }
 
-
 #app {
   font-family: 'Press Start 2P', cursive;
   -webkit-font-smoothing: antialiased;
