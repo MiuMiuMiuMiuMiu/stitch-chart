@@ -85,12 +85,14 @@ textarea {
   font-family: 'Press Start 2P', cursive;
   width: 100%;
   height: 150px;
-  padding: 12px 20px;
+  padding: 20px;
   box-sizing: border-box;
-  border: 2px solid black;
+  border: 2px solid #264653;
   background-color: #f8f8f8;
-  font-size: 16px;
+  font-size: 12px;
+  /*Remove default properties*/
   resize: none;
+  outline: none;
 }
 
 .selected {

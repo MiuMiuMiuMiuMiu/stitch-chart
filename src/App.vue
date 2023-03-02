@@ -26,6 +26,19 @@ export default {
 body {
     margin: 0px;
     padding: 0px;
+    font-size: 12px;
+}
+
+h1 {
+  font-size: 22px;
+}
+
+h2 {
+  font-size: 16px;
+}
+
+h3 {
+  font-size: 14px;
 }
 
 #app {
