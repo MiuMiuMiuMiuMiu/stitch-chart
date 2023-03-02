@@ -2,9 +2,15 @@
   <div class="button-container">
     <button @click="convertCode(textToConvert)">Generate chart</button>
   </div>
-  <div v-if="convertedText.length > 0 && this.validInput === true">
+  <div v-if="binaryStr.length > 0 && this.validInput === true">
+    <h2>Code:</h2>
+    <p>
+      {{ this.convertedText }}
+    </p>
+    
+    <h2>Chart:</h2>
     <div class="grid-container">
-      <CreateChart :text="convertedText" />
+      <CreateChart :text="binaryStr" />
     </div>
   </div>
   <div v-else-if="this.validInput === false">
@@ -23,9 +29,9 @@ export default {
     userChoice: Number
   },
   watch: {
-    // whenever question changes, this function will run
-    userChoice(newChoice, oldChoice) {
-      if (newChoice != oldChoice) {
+    // whenever option changes, this function will run
+    userChoice(newOption, oldOption) {
+      if (newOption != oldOption) {
         this.convertCode(this.textToConvert);
       }
     }
@@ -34,6 +40,7 @@ export default {
     return {
       validInput: Boolean,
       convertedText: '',
+      binaryStr: '',
       morseCode: { 
         a: ".-",
         b: "-...",
@@ -62,33 +69,36 @@ export default {
         y: "-.--",
         z: "--.."
       }
-      
     }
   },
   methods: {
     convertCode(text) {
       if (this.userChoice === 1) {
-        this.convertToBinary(text);
-        this.validInput = true;
+        this.convertToBinary(text); //Convert text to binary
+        this.validInput = true; //As most keyboard input can be translated to binary code, validation is not necessary. Thus, set it as true.
       }
       else if (this.userChoice === 2) {
-        if (this.validateInput(text)) {
-          this.convertToMorse(text);
+        //Validate input text so the letters contain only letters between a-z
+        if (this.validateInput(text)) { //If true 
+          this.convertToMorse(text); //Translate text to morse code
+          this.textToBinary(this.convertedText); //Translate morse code to binary
         }
       }
     },
     convertToBinary(text) {
       /*Convert string to binary code*/
-      this.convertedText = ''; //Empty variable
+      this.binaryStr = '';
+      this.convertedText = '';
       if (text.length > 0) {
         for (var i = 0; i < text.length; i++) {
-          this.convertedText += text[i].charCodeAt(0).toString(2).padStart(8, '0') + "";
+          this.binaryStr += text[i].charCodeAt(0).toString(2).padStart(8, '0');
+          this.convertedText += text[i].charCodeAt(0).toString(2).padStart(8, '0') + " ";
         }
       }
     },
     convertToMorse(text) {
       /*Convert string to morse code*/
-        this.convertedText = ''; //Empty variable
+        this.convertedText = ''; 
         const textArray = text.toLowerCase().split(""); //Create list from input text (hello => [h,e,l,l,o])
         if (text.length > 0) {
           for (var i = 0; i < text.toLowerCase().length; i++) { //Make text in lower case
@@ -99,18 +109,16 @@ export default {
               this.convertedText += this.morseCode[textArray[i]];
             }
           }
-          //Convert text to binary as component CreateChart.vue translates 1s and 0s to grid-cells.
-          this.textToBinary(this.convertedText);
         }
     },
-    textToBinary(text) {
+    textToBinary(convertedText) {
       //Convert morse code to 0s and 1s to generate chart
-      this.convertedText = ''; //Empty variable
-      for (var i = 0; i < text.length; i++) {
-        if(text[i] === "-") {
-          this.convertedText += "1";
+      this.binaryStr = ''; //Empty variable
+      for (var i = 0; i < convertedText.length; i++) {
+        if(convertedText[i] === "-") {
+          this.binaryStr += "1";
         } else {
-          this.convertedText += "0";
+          this.binaryStr += "0";
         }
       }
     },
@@ -127,6 +135,11 @@ export default {
 </script>
 
 <style>
+
+p {
+  margin-bottom: 30px;
+}
+/*Button*/
 button {
   font-family: 'Press Start 2P', cursive;
   background-color: #264653;

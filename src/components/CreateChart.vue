@@ -1,5 +1,4 @@
 <template>
-  <h2>Chart:</h2>
   <!--
   <div class="stitch-container">
     <div class="purl">
