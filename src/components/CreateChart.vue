@@ -8,7 +8,6 @@
     </div>
   </div> 
   -->
-  <div class="grid-container">
     <div id="grid" :style="gridStyle">
       <template v-for="(item, index) in text" :key="index">
         <div class="grid-cell"
@@ -16,7 +15,7 @@
         </div>
       </template>
     </div>
-  </div>
+  
 </template>
 
 <script>
@@ -42,28 +41,6 @@ export default {
 </script>
 
 <style scoped>
-.grid-container {
-  width: 100%;
-  overflow: auto;
-  padding: 1px;
-}
-
-/*Scroll bar*/
-.grid-container::-webkit-scrollbar-track
-{
-  background-color: lightgray;
-}
-
-.grid-container::-webkit-scrollbar
-{
-  width: 1px;
-  background-color: red;
-}
-
-.grid-container::-webkit-scrollbar-thumb
-{
-  background-color: grey;
-}
 
 /*Grid*/
 #grid {

@@ -3,7 +3,9 @@
     <button @click="convertCode(textToConvert)">Generate chart</button>
   </div>
   <div v-if="convertedText.length > 0 && this.validInput === true">
-    <CreateChart :text="convertedText" />
+    <div class="grid-container">
+      <CreateChart :text="convertedText" />
+    </div>
   </div>
   <div v-else-if="this.validInput === false">
     <h2>Error!</h2>
@@ -20,7 +22,6 @@ export default {
     textToConvert: String,
     userChoice: Number
   },
-  /*
   watch: {
     // whenever question changes, this function will run
     userChoice(newChoice, oldChoice) {
@@ -28,7 +29,7 @@ export default {
         this.convertCode(this.textToConvert);
       }
     }
-  },*/
+  },
   data() {
     return {
       validInput: Boolean,
@@ -119,11 +120,6 @@ export default {
       return this.validInput;
     },
   },
-  /*
-  mounted() {
-    // methods can be called in lifecycle hooks, or other methods!
-    //this.convertToMorse()
-  },*/
   components: {
     CreateChart
   }
@@ -147,5 +143,29 @@ button {
   display: flex;
   justify-content: center;
   margin-top: 10px;
+}
+
+/*Grid container*/
+.grid-container {
+  width: 100%;
+  overflow: auto;
+  padding: 1px;
+}
+
+/*Scroll bar*/
+.grid-container::-webkit-scrollbar-track
+{
+  background-color: lightgray;
+}
+
+.grid-container::-webkit-scrollbar
+{
+  width: 1px;
+  background-color: red;
+}
+
+.grid-container::-webkit-scrollbar-thumb
+{
+  background-color: grey;
 }
 </style>
