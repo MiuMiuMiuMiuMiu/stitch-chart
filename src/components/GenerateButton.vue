@@ -2,8 +2,12 @@
   <div class="button-container">
     <button @click="convertCode(textToConvert)">Generate chart</button>
   </div>
-  <div v-if="convertedText.length > 0">
+  <div v-if="convertedText.length > 0 && this.validInput === true">
     <CreateChart :text="convertedText" />
+  </div>
+  <div v-else-if="this.validInput === false">
+    <h2>Error!</h2>
+    <p>Your input may only contain letters between a-z!</p>
   </div>
 </template>
 
@@ -27,6 +31,7 @@ export default {
   },*/
   data() {
     return {
+      validInput: Boolean,
       convertedText: '',
       morseCode: { 
         a: ".-",
@@ -62,10 +67,13 @@ export default {
   methods: {
     convertCode(text) {
       if (this.userChoice === 1) {
-        this.convertToBinary(text)
+        this.convertToBinary(text);
+        this.validInput = true;
       }
       else if (this.userChoice === 2) {
-        this.convertToMorse(text)
+        if (this.validateInput(text)) {
+          this.convertToMorse(text);
+        }
       }
     },
     convertToBinary(text) {
@@ -79,7 +87,6 @@ export default {
     },
     convertToMorse(text) {
       /*Convert string to morse code*/
-      if (this.controlInput(text)) { //If valid text (i.e text is composed of a-z)
         this.convertedText = ''; //Empty variable
         const textArray = text.toLowerCase().split(""); //Create list from input text (hello => [h,e,l,l,o])
         if (text.length > 0) {
@@ -94,25 +101,22 @@ export default {
           //Convert text to binary as component CreateChart.vue translates 1s and 0s to grid-cells.
           this.textToBinary(this.convertedText);
         }
-      }
-      else { //If text is not valid
-        console.log("Nothing here")
-      }
     },
     textToBinary(text) {
       //Convert morse code to 0s and 1s to generate chart
       this.convertedText = ''; //Empty variable
       for (var i = 0; i < text.length; i++) {
         if(text[i] === "-") {
-          this.convertedText += "1"
+          this.convertedText += "1";
         } else {
-          this.convertedText += "0"
+          this.convertedText += "0";
         }
       }
     },
-    controlInput(text) {
-      const validInput = /^[A-Za-z\s]*$/.test(text)
-      return validInput
+    validateInput(text) {
+      /*This function checks a string for whether it contains letters between a-z (both lower / uppercase). Includes empty spaces.*/
+      this.validInput = /^[A-Za-z\s]*$/.test(text);
+      return this.validInput;
     },
   },
   /*
