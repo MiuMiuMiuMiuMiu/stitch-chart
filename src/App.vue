@@ -30,7 +30,7 @@ body {
 
 /*Font size */
 h1 {
-  font-size: 20px;
+  font-size: 18px;
 } h2 {
   font-size: 16px;
 } h3 {

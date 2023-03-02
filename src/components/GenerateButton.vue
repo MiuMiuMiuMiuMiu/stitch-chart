@@ -84,7 +84,10 @@ export default {
         const textArray = text.toLowerCase().split(""); //Create list from input text (hello => [h,e,l,l,o])
         if (text.length > 0) {
           for (var i = 0; i < text.toLowerCase().length; i++) { //Make text in lower case
-            if(textArray[i] !== ' ') { //Ignore spaces and just add on the letters
+            if(textArray[i] === ' ') { //If there is a space add 7 dots. In morse code, space between words are separated by a space equal to seven dots.
+              this.convertedText +=  "......."; 
+            }
+            else { //Else add the converted text
               this.convertedText += this.morseCode[textArray[i]];
             }
           }
