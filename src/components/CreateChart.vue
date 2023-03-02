@@ -1,9 +1,18 @@
 <template>
   <h2>Chart:</h2>
+  <!--
+  <div class="stitch-container">
+    <div class="purl">
+    </div>
+    <div class="knit">
+    </div>
+  </div> 
+  -->
   <div class="grid-container">
     <div id="grid" :style="gridStyle">
       <template v-for="(item, index) in text" :key="index">
-        <div class="grid-cell" v-bind:style="[item === '0' ? {'background-color': 'grey'} : {'background-color': 'white'}]">
+        <div class="grid-cell"
+          v-bind:style="[item === '0' ? { 'background-color': 'grey' } : { 'background-color': 'white' }]">
         </div>
       </template>
     </div>
@@ -18,13 +27,13 @@ export default {
   },
   data() {
     return {
-      columns: parseInt(this.text.length) 
+      columns: parseInt(this.text.length)
     }
   },
   computed: {
     gridStyle() {
       return {
-        gridTemplateColumns: `repeat(${this.text.length}, 50px)`, //Amount of columns from length of text
+        gridTemplateColumns: `repeat(${this.text.length}, 30px)`, //Amount of columns from length of text
         //border: 'black solid 1px'
       }
     },
@@ -41,11 +50,29 @@ export default {
 
 #grid {
   display: grid;
-  grid-gap: 1px;
+  grid-gap: .5px;
 }
 
 .grid-cell {
   box-shadow: 0px 0px 0px 1px black;
-  height: 50px;
+  height: 30px;
 }
+/*
+.stitch-container {
+  margin-bottom: 10px;
+}
+
+.purl {
+  width: 30px;
+  height: 30px;
+  border: 1px solid black;
+  background-color: grey;
+  margin-bottom: 2px;
+}
+.knit {
+  width: 30px;
+  height: 30px;
+  border: 1px solid black;
+  background-color: white;
+}*/
 </style>
