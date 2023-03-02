@@ -1,7 +1,6 @@
 <template>
   <div>
     <PageHeader />
-    <WelcomeUser />
     <ChartOption />
   </div>
   

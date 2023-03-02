@@ -79,17 +79,21 @@ export default {
     },
     convertToMorse(text) {
       /*Convert string to morse code*/
-      this.convertedText = ''; //Empty variable
-      const textArray = text.toLowerCase().split(""); //Create list from input text (hello => [h,e,l,l,o])
-      if (text.length > 0) {
-        for (var i = 0; i < text.toLowerCase().length; i++) { //Make text in lower case
-          if(textArray[i] !== ' ') { //If there is a space add 7 dots
-            //In morse code, space between words are separated by a space equal to seven dots.
-            this.convertedText += this.morseCode[textArray[i]];
+      if (this.controlMorseInput(text)) { //If valid text (i.e text is composed of a-z)
+        this.convertedText = ''; //Empty variable
+        const textArray = text.toLowerCase().split(""); //Create list from input text (hello => [h,e,l,l,o])
+        if (text.length > 0) {
+          for (var i = 0; i < text.toLowerCase().length; i++) { //Make text in lower case
+            if(textArray[i] !== ' ') { //Ignore spaces and just add on the letters
+              this.convertedText += this.morseCode[textArray[i]];
+            }
           }
+          //Convert text to binary as component CreateChart.vue translates 1s and 0s to grid-cells.
+          this.textToBinary(this.convertedText);
         }
-        //Convert text to binary as component CreateChart.vue translates 1s and 0s to grid-cells.
-        this.textToBinary(this.convertedText);
+      }
+      else { //If text is not valid
+        console.log("Nothing here")
       }
     },
     textToBinary(text) {
@@ -102,7 +106,11 @@ export default {
           this.convertedText += "0"
         }
       }
-    }
+    },
+    controlMorseInput(text) {
+      const validInput = /^[a-z]+$/i.test(text)
+      return validInput
+    },
   },
   /*
   mounted() {
@@ -110,7 +118,7 @@ export default {
     //this.convertToMorse()
   },*/
   components: {
-    CreateChart,
+    CreateChart
   }
 }
 </script>
