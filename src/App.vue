@@ -8,14 +8,12 @@
 </template>
 
 <script>
-import WelcomeUser from './components/WelcomeUser.vue'
 import ChartOption from './components/ChartOption.vue';
 import PageHeader from './components/PageHeader.vue';
 export default {
   name: 'App',
   components: {
     PageHeader,
-    WelcomeUser,
     ChartOption
   }
 }

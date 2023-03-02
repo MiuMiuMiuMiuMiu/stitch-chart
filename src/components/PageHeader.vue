@@ -16,5 +16,6 @@ export default {
   padding-left: 20px;
   background: #073b4c;
   color: white;
+  margin-bottom: 60px;
 }
 </style>
