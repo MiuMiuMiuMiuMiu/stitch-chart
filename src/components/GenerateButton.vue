@@ -79,7 +79,7 @@ export default {
     },
     convertToMorse(text) {
       /*Convert string to morse code*/
-      if (this.controlMorseInput(text)) { //If valid text (i.e text is composed of a-z)
+      if (this.controlInput(text)) { //If valid text (i.e text is composed of a-z)
         this.convertedText = ''; //Empty variable
         const textArray = text.toLowerCase().split(""); //Create list from input text (hello => [h,e,l,l,o])
         if (text.length > 0) {
@@ -107,8 +107,8 @@ export default {
         }
       }
     },
-    controlMorseInput(text) {
-      const validInput = /^[a-z]+$/i.test(text)
+    controlInput(text) {
+      const validInput = /^[A-Za-z\s]*$/.test(text)
       return validInput
     },
   },
@@ -125,16 +125,14 @@ export default {
 
 <style>
 button {
+  font-family: 'Press Start 2P', cursive;
   background-color: #264653;
-  /* Green */
   border: none;
   color: white;
-  padding: 15px 32px;
+  padding: 15px;
   text-align: center;
   text-decoration: none;
   display: inline-block;
-  font-size: 16px;
-  border-radius: 25px;
   cursor: pointer;
 }
 
