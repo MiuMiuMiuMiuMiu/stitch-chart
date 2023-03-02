@@ -52,7 +52,7 @@ export default {
 
 <style scoped>
 .chart-input-container {
-  border: black 1px solid;
+  border: #264653 3px solid;
   width: 600px;
   margin: 0 auto;
   padding: 30px;
@@ -87,7 +87,8 @@ textarea {
   height: 150px;
   padding: 20px;
   box-sizing: border-box;
-  border: 2px solid #264653;
+  color: #264653;
+  border: 3px solid #264653;
   background-color: #f8f8f8;
   font-size: 12px;
   /*Remove default properties*/

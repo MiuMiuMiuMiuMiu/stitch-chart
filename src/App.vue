@@ -29,15 +29,12 @@ body {
     font-size: 12px;
 }
 
+/*Font size */
 h1 {
-  font-size: 22px;
-}
-
-h2 {
+  font-size: 20px;
+} h2 {
   font-size: 16px;
-}
-
-h3 {
+} h3 {
   font-size: 14px;
 }
 

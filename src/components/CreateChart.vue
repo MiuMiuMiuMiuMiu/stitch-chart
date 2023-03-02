@@ -12,7 +12,7 @@
     <div id="grid" :style="gridStyle">
       <template v-for="(item, index) in text" :key="index">
         <div class="grid-cell"
-          v-bind:style="[item === '0' ? { 'background-color': 'grey' } : { 'background-color': 'white' }]">
+          v-bind:style="[item === '0' ? { 'background-color': '#264653' } : { 'background-color': 'white' }]">
         </div>
       </template>
     </div>
@@ -48,13 +48,31 @@ export default {
   padding: 1px;
 }
 
+/*Scroll bar*/
+.grid-container::-webkit-scrollbar-track
+{
+  background-color: lightgray;
+}
+
+.grid-container::-webkit-scrollbar
+{
+  width: 1px;
+  background-color: red;
+}
+
+.grid-container::-webkit-scrollbar-thumb
+{
+  background-color: grey;
+}
+
+/*Grid*/
 #grid {
   display: grid;
   grid-gap: .5px;
 }
 
 .grid-cell {
-  box-shadow: 0px 0px 0px 1px black;
+  box-shadow: 0px 0px 0px 1px lightslategray;
   height: 30px;
 }
 /*
