@@ -1,24 +1,30 @@
-# stitch-chart
+# Stitch Chart
 
-## Project setup
+This project can generate a chart based on binary and morse code for knitting or crochet.
+
+## Getting Started
+
+These instructions will get you a copy of the project up and running on your local machine for development and testing purposes.
+
+### Installing
+
+Navigate to a folder where you would like to put the repository. Then copy repository to local machine. Run:
+
+```
+git clone https://github.com/MiuMiuMiuMiuMiu/stitch-chart.git
+```
+
+Navigate to project folder and run:
 ```
 npm install
 ```
 
-### Compiles and hot-reloads for development
+Then run:
 ```
 npm run serve
 ```
 
-### Compiles and minifies for production
-```
-npm run build
-```
+You should now be able to see the website running :)
 
-### Lints and fixes files
-```
-npm run lint
-```
-
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+## Built With
+* [Vue](https://vuejs.org/) - A frontend framework
