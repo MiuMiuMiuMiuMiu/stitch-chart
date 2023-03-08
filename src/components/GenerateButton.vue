@@ -29,7 +29,7 @@ export default {
     userChoice: Number
   },
   watch: {
-    // whenever option changes, this function will run
+    // whenever option changes, this function will run, ie changes between binary and morse code
     userChoice(newOption, oldOption) {
       if (newOption != oldOption) {
         this.convertCode(this.textToConvert);
@@ -91,8 +91,13 @@ export default {
       this.convertedText = '';
       if (text.length > 0) {
         for (var i = 0; i < text.length; i++) {
+          if (text[i] === ' ') {
+            this.convertedText += " ";
+          }
+          else {
+            this.convertedText += text[i].charCodeAt(0).toString(2).padStart(8, '0');
+          }
           this.binaryStr += text[i].charCodeAt(0).toString(2).padStart(8, '0');
-          this.convertedText += text[i].charCodeAt(0).toString(2).padStart(8, '0') + " ";
         }
       }
     },
@@ -126,7 +131,9 @@ export default {
       }
     },
     validateInput(text) {
-      /*This function checks a string for whether it contains letters between a-z (both lower / uppercase). Includes empty spaces.*/
+      /*This function checks a string for whether it contains letters between a-z (both lower / uppercase). Includes empty spaces.
+        If string does contain illegal characters, return false, else true.
+      */
       this.validInput = /^[A-Za-z\s]*$/.test(text);
       return this.validInput;
     },
