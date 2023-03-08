@@ -105,6 +105,9 @@ export default {
             if(textArray[i] === ' ') { //If there is a space add 7 dots. In morse code, space between words are separated by a space equal to seven dots.
               this.convertedText +=  "......."; 
             }
+            else if (textArray[i] === '\n') {
+              this.convertedText += "";
+            }
             else { //Else add the converted text
               this.convertedText += this.morseCode[textArray[i]];
             }
