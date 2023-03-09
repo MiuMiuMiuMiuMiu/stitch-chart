@@ -7,14 +7,23 @@
     </div>
   </div> 
   -->
-    <div id="grid" :style="gridStyle">
-      <template v-for="(item, index) in text" :key="index">
-        <div class="grid-cell"
-          v-bind:style="[item === '0' ? { 'background-color': '#264653' } : { 'background-color': 'white' }]">
-        </div>
-      </template>
-    </div>
-  
+  <div id="grid" :style="gridStyle">
+    <template v-for="(item, index) in text" :key="index">
+
+      <!--If 0-->
+      <div v-if="item === '0'" class="grid-cell" v-bind:style="[{ 'background-color': '#264653' }]">
+      </div>
+
+      <!-- If 1-->
+      <div v-else-if="item === '1'" class="grid-cell" v-bind:style="[{ 'background-color': 'white' }]">
+      </div>
+
+      <!--If space (' ')-->
+      <div v-else="item === ' '" class="grid-cell" v-bind:style="[{ 'background-color': 'red' }]">
+      </div>
+
+    </template>
+  </div>
 </template>
 
 <script>
@@ -35,12 +44,22 @@ export default {
         //border: 'black solid 1px'
       }
     },
+    gridCellColor(item) {
+      if (item === '0') {
+        return {
+          'background-color': '#264653'
+        }
+      } else {
+        return {
+          'background-color': 'white'
+        }
+      }
+    }
   }
 }
 </script>
 
 <style scoped>
-
 /*Grid*/
 #grid {
   display: grid;
@@ -51,6 +70,7 @@ export default {
   box-shadow: 0px 0px 0px 1px lightslategray;
   height: 30px;
 }
+
 /*
 .stitch-container {
   margin-bottom: 10px;
