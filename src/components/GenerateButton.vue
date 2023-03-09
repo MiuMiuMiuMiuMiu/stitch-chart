@@ -93,15 +93,16 @@ export default {
         for (var i = 0; i < text.length; i++) {
           if (text[i] === ' ') { //If there is a space
             this.convertedText += " ";
+            this.binaryStr += " ";
           }
           else { 
             this.convertedText += text[i].charCodeAt(0).toString(2).padStart(8, '0');
+            this.binaryStr += text[i].charCodeAt(0).toString(2).padStart(8, '0');
           }
-          this.binaryStr += text[i].charCodeAt(0).toString(2).padStart(8, '0');
+          
         }
       }
-
-      console.log(this.binaryStr, this.convertedText);
+      //console.log(this.binaryStr, this.convertedText);
     },
     convertToMorse(text) {
       /*Convert string to morse code*/
@@ -110,7 +111,7 @@ export default {
         if (text.length > 0) {
           for (var i = 0; i < text.toLowerCase().length; i++) { //Make text in lower case
             if(textArray[i] === ' ') { //If there is a space add 7 dots. In morse code, space between words are separated by a space equal to seven dots.
-              this.convertedText +=  "......."; 
+              this.convertedText +=  " / "; 
             }
             else if (textArray[i] === '\n') {
               this.convertedText += "";
@@ -127,8 +128,11 @@ export default {
       for (var i = 0; i < convertedText.length; i++) {
         if(convertedText[i] === "-") {
           this.binaryStr += "1";
-        } else {
+        } else if (convertedText[i] === ".") {
           this.binaryStr += "0";
+        }
+        else if (convertedText[i] === "/"){
+          this.binaryStr += " ";
         }
       }
     },
@@ -150,6 +154,7 @@ export default {
 
 p {
   margin-bottom: 30px;
+  word-break: break-all;
 }
 /*Button*/
 button {

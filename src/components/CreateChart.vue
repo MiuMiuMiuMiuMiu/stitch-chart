@@ -19,7 +19,7 @@
       </div>
 
       <!--If space (' ')-->
-      <div v-else="item === ' '" class="grid-cell" v-bind:style="[{ 'background-color': 'red' }]">
+      <div v-else class="grid-cell" v-bind:style="[{ 'background-color': 'red' }]">
       </div>
 
     </template>
