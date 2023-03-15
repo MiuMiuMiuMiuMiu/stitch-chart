@@ -9,9 +9,7 @@
     </p>
     
     <h2>Chart:</h2>
-    <div class="grid-container">
-      <CreateChart :text="binaryStr" />
-    </div>
+    <CreateChart :text="binaryStr" />
   </div>
   <div v-else-if="this.validInput === false">
     <h2>Error!</h2>
@@ -173,29 +171,5 @@ button {
   display: flex;
   justify-content: center;
   margin-top: 10px;
-}
-
-/*Grid container*/
-.grid-container {
-  width: 100%;
-  overflow: auto;
-  padding: 1px;
-}
-
-/*Scroll bar*/
-.grid-container::-webkit-scrollbar-track
-{
-  background-color: lightgray;
-}
-
-.grid-container::-webkit-scrollbar
-{
-  width: 1px;
-  background-color: red;
-}
-
-.grid-container::-webkit-scrollbar-thumb
-{
-  background-color: grey;
 }
 </style>
