@@ -8,10 +8,6 @@
       <div class="knit">
       </div>
       <p>Knit</p>
-
-      <div class="space">
-      </div>
-      <p>Space</p>
     
   </div> 
 
@@ -24,10 +20,6 @@
 
       <!-- If 1-->
       <div v-else-if="item === '1'" class="grid-cell" v-bind:style="[{ 'background-color': 'white' }]">
-      </div>
-
-      <!--If space (' ')-->
-      <div v-else class="grid-cell" v-bind:style="[{ 'background-color': 'red' }]">
       </div>
 
     </template>
