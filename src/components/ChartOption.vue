@@ -1,22 +1,29 @@
 <template>
   <div class="chart-input-container">
+    <ToolTip/>
     <h2>Options:</h2>
     <div class="chart-choice">
       <h3 v-bind:class="{ 'selected': clicked === option.id, 'disabled': clicked !== option.id }"
         v-on:click="choice(option.id)" v-for="option of options" v-bind:key="option.id">{{ option.option }}</h3>
     </div>
+
     <h2>Text:</h2>
     <div class="gauge-input">
       <textarea v-model="text" type="text" id="text" min="1" max="50"></textarea>
     </div>
+
     <div class="generate-button">
       <GenerateButton :textToConvert="text" :userChoice="clicked" />
     </div>
   </div>
+
+  
+
 </template>
   
 <script>
 import GenerateButton from './GenerateButton.vue';
+import ToolTip from './ToolTip.vue';
 
 export default {
   name: "ChartOption",
@@ -45,8 +52,9 @@ export default {
     this.clicked = 1;
   }, 
   components: {
-  GenerateButton
-}
+    GenerateButton,
+    ToolTip
+  }
 }
 </script>
 
@@ -55,7 +63,7 @@ export default {
   border: #264653 3px solid;
   width: 600px;
   margin: 0 auto;
-  padding: 30px;
+  padding: 25px;
 }
 
 h2,
