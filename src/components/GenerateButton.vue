@@ -68,10 +68,7 @@ export default {
           this.convertedText = ''; 
           const textArray = text.toLowerCase().split("");
           for(let i = 0; i < text.length; i++) {
-            if(textArray[i] === ' ') {
-              this.convertedText +=  " "; 
-            }
-            else if (textArray[i] === '\n') {
+            if (textArray[i] === '\n') {
               this.convertedText += "";
             }
             else { //Else add the converted text
