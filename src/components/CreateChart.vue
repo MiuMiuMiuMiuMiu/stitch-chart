@@ -87,8 +87,9 @@ export default {
 
 /*Stitch instructions*/
 .stitch-container {
-  margin-bottom: 10px;
+  margin-bottom: 30px;
   display: flex;
+  align-items: center;
 }
 .stitch-container > div {
  margin-right: 5px;

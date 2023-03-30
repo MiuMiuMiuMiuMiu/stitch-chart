@@ -4,7 +4,13 @@
   </div>
   <div v-if="this.binaryList[0].length > 0 && this.validInput === true">
     <h2>Code:</h2>
-    <p>{{ this.displayCode }}</p>
+    
+    <div id="displayCodeContainer">
+      <template v-for="(line, index) in displayCode" :key="index">
+        <p>{{ line }}</p>
+      </template>
+    </div>
+    
     <h2>Chart:</h2>
     <CreateChart :binaryList="binaryList" />
   </div>
@@ -39,7 +45,7 @@ export default {
     return {
       validInput: Boolean,
       binaryList: [''],
-      displayCode: '',
+      displayCode: [''],
       morse: Morse,
       braille: Braille
     }
@@ -73,6 +79,9 @@ export default {
       for (var i = 0; i < text.length; i++) {
         this.binaryList[0] += text[i].charCodeAt(0).toString(2).padStart(8, '0');
       }
+
+      this.displayCode = ['']
+      this.displayCode[0] = this.binaryList[0];
     },
     convertToMorse(text) {
       /*Convert string to morse*/
@@ -84,6 +93,7 @@ export default {
         this.binaryList[0] += this.morse[textArray[i]];
       }
 
+      this.displayCode = ['']
       this.convertBinaryToStr(".", "-")
     },
     convertToBraille(text) {
@@ -102,6 +112,8 @@ export default {
           this.binaryList[2] += brailleList[2]
         }
       }
+
+      this.convertBinaryToStr("•", "\u00A0")
     },
     validateInput(text) {
       /*This function checks a string for whether it contains letters between a-z (both lower / uppercase). Includes empty spaces.
@@ -111,15 +123,15 @@ export default {
       return this.validInput;
     },
     convertBinaryToStr(replaceZero, replaceOne) {
-
       let string;
-
       for(let i = 0; i < this.binaryList.length; i++) {
-        string = this.binaryList[0].replace(/0/g, replaceZero);
+        string = this.binaryList[i].replace(/0/g, replaceZero);
         string = string.replace(/1/g, replaceOne);
+        this.displayCode[i] = string;
       }
 
-      this.displayCode = string;
+      console.log(this.displayCode)
+
     },
   },
   components: {
@@ -128,12 +140,18 @@ export default {
 }
 </script>
 
-<style>
+<style scope>
 
 p {
-  margin-bottom: 30px;
   word-break: break-all;
+  margin: 0px;
 }
+
+/*Display code*/
+#displayCodeContainer{
+  margin-bottom: 30px;
+}
+
 /*Button*/
 button {
   font-family: 'Press Start 2P', cursive;
