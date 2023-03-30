@@ -20,6 +20,7 @@
 <script>
 import CreateChart from './CreateChart.vue';
 import Morse from '../data/morse.json';
+import Braille from '../data/braille.json';
 
 export default {
   name: "GenerateButton",
@@ -40,7 +41,8 @@ export default {
       validInput: Boolean,
       convertedText: '',
       binaryStr: '',
-      morseCode: Morse
+      morseCode: Morse,
+      braille: Braille
     }
   },
   methods: {
@@ -55,6 +57,37 @@ export default {
           this.convertToMorse(text); //Translate text to morse code
           this.textToBinary(this.convertedText); //Translate morse code to binary
         }
+      }
+      else {
+
+        var brailleBinary = ["", "", ""];
+
+        if (this.validateInput(text)) { //If true 
+          console.log(text);
+          this.convertedText = ''; 
+          const textArray = text.toLowerCase().split("");
+          for(let i = 0; i < text.length; i++) {
+            if(textArray[i] === ' ') {
+              this.convertedText +=  " "; 
+            }
+            else if (textArray[i] === '\n') {
+              this.convertedText += "";
+            }
+            else { //Else add the converted text
+
+              //Split 000000 to 00,00,00
+              let brailleList = (this.braille[textArray[i]]).match(/.{2}/g);
+
+              //Add braille binary to list
+              brailleBinary[0] += brailleList[0]
+              brailleBinary[1] += brailleList[1]
+              brailleBinary[2] += brailleList[2]
+            
+              this.convertedText += this.braille[textArray[i]];
+            }
+          }
+        }
+        console.log(brailleBinary)
       }
     },
     convertToBinary(text) {
@@ -72,10 +105,13 @@ export default {
     convertToMorse(text) {
       /*Convert string to morse code*/
         this.convertedText = ''; 
-        const textArray = text.toLowerCase().split(""); //Create list from input text (hello => [h,e,l,l,o])
+      //Create list from input text (hello => [h,e,l,l,o])
+        const textArray = text.toLowerCase().split(""); 
         if (text.length > 0) {
-          for (var i = 0; i < text.toLowerCase().length; i++) { //Make text in lower case
-            if(textArray[i] === ' ') { //If there is a space add 7 dots. In morse code, space between words are separated by a space equal to seven dots.
+          //Make text in lower case
+          for (var i = 0; i < text.toLowerCase().length; i++) { 
+          //If there is a space add 7 dots. In morse code, space between words are separated by a space equal to seven dots.
+            if(textArray[i] === ' ') { 
               this.convertedText +=  "......."; 
             }
             else if (textArray[i] === '\n') {
