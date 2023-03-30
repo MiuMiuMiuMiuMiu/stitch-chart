@@ -8,10 +8,6 @@
       <div class="knit">
       </div>
       <p>Knit</p>
-
-      <div @click="printOut()">
-        Button
-      </div>
     
   </div> 
 
