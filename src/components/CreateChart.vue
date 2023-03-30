@@ -8,27 +8,19 @@
       <div class="knit">
       </div>
       <p>Knit</p>
-
-      <div class="space">
-      </div>
-      <p>Space</p>
     
   </div> 
 
   <div id="grid" :style="gridStyle">
-    <template v-for="(item, index) in text" :key="index">
+    <template v-for="(item, key) in binaryList" :key="key">
 
-      <!--If 0-->
-      <div v-if="item === '0'" class="grid-cell" v-bind:style="[{ 'background-color': '#264653' }]">
-      </div>
+      <template v-for="(i, key) in item" :key="key">
+        <div v-if="i === '0'" class="grid-cell" v-bind:style="[{ 'background-color': '#264653' }]">
+        </div>
 
-      <!-- If 1-->
-      <div v-else-if="item === '1'" class="grid-cell" v-bind:style="[{ 'background-color': 'white' }]">
-      </div>
-
-      <!--If space (' ')-->
-      <div v-else class="grid-cell" v-bind:style="[{ 'background-color': 'red' }]">
-      </div>
+        <div v-else-if="i === '1'" class="grid-cell" v-bind:style="[{ 'background-color': 'white' }]">
+        </div>
+      </template>
 
     </template>
   </div>
@@ -38,17 +30,23 @@
 export default {
   name: 'CreateChart',
   props: {
-    text: String
+    binaryList: Array
   },
   data() {
     return {
-      columns: parseInt(this.text.length)
+      columns: this.binaryList[0].length,
+    }
+  },
+  methods: {
+    printOut() {
+      console.log(this.binaryList[0].length)
     }
   },
   computed: {
     gridStyle() {
       return {
-        gridTemplateColumns: `repeat(${this.text.length}, 30px)`, //Amount of columns from length of text
+        gridTemplateColumns: `repeat(${this.binaryList[0].length}, 30px)`, //Amount of columns from length of text
+        gridTemplateRows: `repeat(${this.binaryList.length}, 30px)`
         //border: 'black solid 1px'
       }
     }
@@ -89,8 +87,9 @@ export default {
 
 /*Stitch instructions*/
 .stitch-container {
-  margin-bottom: 10px;
+  margin-bottom: 30px;
   display: flex;
+  align-items: center;
 }
 .stitch-container > div {
  margin-right: 5px;
