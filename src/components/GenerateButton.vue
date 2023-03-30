@@ -2,7 +2,7 @@
   <div class="button-container">
     <button @click="convertStr(textToConvert)">Generate chart</button>
   </div>
-  <div v-if="this.binaryList[0].length > 0 && this.validInput === true">
+  <div id="pattern" v-if="this.binaryList[0].length > 0 && this.validInput === true">
     <h2>Code:</h2>
     
     <div id="displayCodeContainer">
@@ -13,8 +13,12 @@
     
     <h2>Chart:</h2>
     <CreateChart :binaryList="binaryList" />
+    <PDFButton/>
   </div>
-  <div v-else-if="this.validInput === false">
+  
+  
+
+  <div v-if="this.validInput === false">
     <h2>Error!</h2>
     <p>Your input may only contain letters between a-z!</p>
   </div>
@@ -23,6 +27,8 @@
 <script>
 //Component
 import CreateChart from './CreateChart.vue';
+import PDFButton from './PDFButton.vue';
+
 //Json files
 import Morse from '../data/morse.json';
 import Braille from '../data/braille.json';
@@ -135,7 +141,8 @@ export default {
     },
   },
   components: {
-    CreateChart
+    CreateChart,
+    PDFButton
   }
 }
 </script>
@@ -144,12 +151,15 @@ export default {
 
 p {
   word-break: break-all;
-  margin: 0px;
 }
 
 /*Display code*/
 #displayCodeContainer{
   margin-bottom: 30px;
+}
+
+#displayCodeContainer > p {
+  margin: 0;
 }
 
 /*Button*/
@@ -163,6 +173,7 @@ button {
   text-decoration: none;
   display: inline-block;
   cursor: pointer;
+  margin-top: 10px;
 }
 
 .button-container {

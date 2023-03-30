@@ -11,19 +11,22 @@
     
   </div> 
 
-  <div id="grid" :style="gridStyle">
-    <template v-for="(item, key) in binaryList" :key="key">
+  <div id="grid-container">
+    <div id="grid" :style="gridStyle">
+      <template v-for="(item, key) in binaryList" :key="key">
 
-      <template v-for="(i, key) in item" :key="key">
-        <div v-if="i === '0'" class="grid-cell" v-bind:style="[{ 'background-color': '#264653' }]">
-        </div>
+        <template v-for="(i, key) in item" :key="key">
+          <div v-if="i === '0'" class="grid-cell dark-blue">
+          </div>
 
-        <div v-else-if="i === '1'" class="grid-cell" v-bind:style="[{ 'background-color': 'white' }]">
-        </div>
+          <div v-else-if="i === '1'" class="grid-cell white">
+          </div>
+        </template>
+
       </template>
-
-    </template>
+    </div>
   </div>
+  
 </template>
 
 <script>
@@ -31,16 +34,6 @@ export default {
   name: 'CreateChart',
   props: {
     binaryList: Array
-  },
-  data() {
-    return {
-      columns: this.binaryList[0].length,
-    }
-  },
-  methods: {
-    printOut() {
-      console.log(this.binaryList[0].length)
-    }
   },
   computed: {
     gridStyle() {
@@ -56,31 +49,45 @@ export default {
 
 <style scoped>
 /*Grid*/
-#grid {
-  display: grid;
-  grid-gap: .5px;
+
+#grid-container {
   overflow: auto;
-  padding: 1px;
+}
+
+#grid {
+  display: inline-grid;
+  
+  border-bottom: 1px solid black;
+  border-left: 1px solid black;
 }
 
 .grid-cell {
-  box-shadow: 0px 0px 0px 1px lightslategray;
-  height: 30px;
+  border-top: 1px solid black;
+  border-right: 1px solid black;
+}
+
+/*Grid color*/
+.dark-blue {
+  background-color: #264653;
+}
+
+.white {
+  background-color: white;
 }
 
 /*Scroll bar*/
-#grid::-webkit-scrollbar-track
+#grid-container::-webkit-scrollbar-track
 {
   background-color: lightgray;
 }
 
-#grid::-webkit-scrollbar
+#grid-container::-webkit-scrollbar
 {
   width: 1px;
   background-color: red;
 }
 
-#grid::-webkit-scrollbar-thumb
+#grid-container::-webkit-scrollbar-thumb
 {
   background-color: grey;
 }
@@ -109,11 +116,5 @@ export default {
   height: 30px;
   border: 1px solid black;
   background-color: white;
-}
-.space {
-  width: 30px;
-  height: 30px;
-  border: 1px solid black;
-  background-color: red;
 }
 </style>
