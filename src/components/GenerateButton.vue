@@ -63,7 +63,7 @@ export default {
         var brailleBinary = ["", "", ""];
 
         if (this.validateInput(text)) { //If true 
-          console.log(text);
+          //console.log(text);
           this.convertedText = ''; 
           const textArray = text.toLowerCase().split("");
           for(let i = 0; i < text.length; i++) {

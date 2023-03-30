@@ -12,15 +12,19 @@
   </div> 
 
   <div id="grid" :style="gridStyle">
+<<<<<<< Updated upstream
     <template v-for="(item, index) in text" :key="index">
+=======
+    <template v-for="(item, index) in binaryList" :key="index">
+>>>>>>> Stashed changes
 
-      <!--If 0-->
-      <div v-if="item === '0'" class="grid-cell" v-bind:style="[{ 'background-color': '#264653' }]">
-      </div>
+      <template v-for="(i, index) in item" :key="index">
+        <div v-if="i === '0'" class="grid-cell" v-bind:style="[{ 'background-color': '#264653' }]">
+        </div>
 
-      <!-- If 1-->
-      <div v-else-if="item === '1'" class="grid-cell" v-bind:style="[{ 'background-color': 'white' }]">
-      </div>
+        <div v-else-if="i === '1'" class="grid-cell" v-bind:style="[{ 'background-color': 'white' }]">
+        </div>
+      </template>
 
     </template>
   </div>
@@ -34,13 +38,27 @@ export default {
   },
   data() {
     return {
+<<<<<<< Updated upstream
       columns: parseInt(this.text.length)
+=======
+      columns: this.binaryList[0].length,
+    }
+  },
+  methods: {
+    printOut() {
+      console.log(this.binaryList[0].length)
+>>>>>>> Stashed changes
     }
   },
   computed: {
     gridStyle() {
       return {
+<<<<<<< Updated upstream
         gridTemplateColumns: `repeat(${this.text.length}, 30px)`, //Amount of columns from length of text
+=======
+        gridTemplateColumns: `repeat(${this.binaryList[0].length}, 30px)`, //Amount of columns from length of text
+        gridTemplateRows: `repeat(${this.binaryList.length}, 30px)`
+>>>>>>> Stashed changes
         //border: 'black solid 1px'
       }
     }
