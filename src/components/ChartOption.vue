@@ -62,10 +62,24 @@ export default {
 <style scoped>
 .chart-input-container {
   border: #264653 3px solid;
-  width: 600px;
+  width: 35%;
   margin: 0 auto;
   padding: 25px;
 }
+
+@media (max-width:1280px) { 
+  .chart-input-container {
+    width: 60%
+  }
+} 
+
+@media (max-width:960px) { 
+  .chart-input-container {
+    width: 80%
+  }
+} 
+
+
 
 h2,
 h3 {
@@ -93,7 +107,7 @@ input[type=number] {
 textarea {
   font-family: 'Press Start 2P', cursive;
   width: 100%;
-  height: 150px;
+  height: 200px;
   padding: 20px;
   box-sizing: border-box;
   color: #264653;
