@@ -8,6 +8,10 @@
       <div class="knit">
       </div>
       <p>Knit</p>
+
+      <div @click="printOut()">
+        Button
+      </div>
     
   </div> 
 
@@ -30,7 +34,7 @@
 export default {
   name: 'CreateChart',
   props: {
-    text: String
+    binaryList: Array
   },
   data() {
     return {
