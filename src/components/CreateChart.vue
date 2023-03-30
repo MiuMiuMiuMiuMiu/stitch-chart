@@ -8,11 +8,15 @@
       <div class="knit">
       </div>
       <p>Knit</p>
+
+      <div @click="printOut()">
+        Button
+      </div>
     
   </div> 
 
   <div id="grid" :style="gridStyle">
-    <template v-for="(item, index) in text" :key="index">
+    <template v-for="(item, index) in binaryList[0]" :key="index">
 
       <!--If 0-->
       <div v-if="item === '0'" class="grid-cell" v-bind:style="[{ 'background-color': '#264653' }]">
@@ -30,17 +34,22 @@
 export default {
   name: 'CreateChart',
   props: {
-    text: String
+    binaryList: Array
   },
   data() {
     return {
-      columns: parseInt(this.text.length)
+      columns: parseInt(this.binaryList),
+    }
+  },
+  methods: {
+    printOut() {
+      console.log(this.binaryList.length)
     }
   },
   computed: {
     gridStyle() {
       return {
-        gridTemplateColumns: `repeat(${this.text.length}, 30px)`, //Amount of columns from length of text
+        gridTemplateColumns: `repeat(${this.binaryList[0].length}, 30px)`, //Amount of columns from length of text
         //border: 'black solid 1px'
       }
     }

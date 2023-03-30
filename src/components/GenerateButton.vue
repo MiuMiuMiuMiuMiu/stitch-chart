@@ -2,14 +2,14 @@
   <div class="button-container">
     <button @click="convertCode(textToConvert)">Generate chart</button>
   </div>
-  <div v-if="binaryStr.length > 0 && this.validInput === true">
+  <div v-if="binaryStr[0] > 0 && this.validInput === true">
     <h2>Code:</h2>
     <p>
       {{ this.convertedText }}
     </p>
     
     <h2>Chart:</h2>
-    <CreateChart :text="binaryStr" />
+    <CreateChart :binaryList="binaryStr" />
   </div>
   <div v-else-if="this.validInput === false">
     <h2>Error!</h2>
@@ -40,7 +40,7 @@ export default {
     return {
       validInput: Boolean,
       convertedText: '',
-      binaryStr: '',
+      binaryStr: [''],
       morseCode: Morse,
       braille: Braille
     }
@@ -59,7 +59,7 @@ export default {
         }
       }
       else {
-
+        this.binaryStr = [''];
         var brailleBinary = ["", "", ""];
 
         if (this.validateInput(text)) { //If true 
@@ -87,17 +87,17 @@ export default {
             }
           }
         }
-        console.log(brailleBinary)
+        this.binaryStr = brailleBinary;
       }
     },
     convertToBinary(text) {
       /*Convert string to binary code*/
-      this.binaryStr = '';
+      this.binaryStr = [''];
       this.convertedText = '';
       if (text.length > 0) {
         for (var i = 0; i < text.length; i++) {
             this.convertedText += text[i].charCodeAt(0).toString(2).padStart(8, '0');
-            this.binaryStr += text[i].charCodeAt(0).toString(2).padStart(8, '0');
+            this.binaryStr[0] += text[i].charCodeAt(0).toString(2).padStart(8, '0');
         }
       }
       //console.log(this.binaryStr, this.convertedText);
@@ -125,15 +125,15 @@ export default {
     },
     textToBinary(convertedText) {
       //Convert morse code to 0s and 1s to generate chart
-      this.binaryStr = ''; //Empty variable
+      this.binaryStr = ['']; //Empty variable
       for (var i = 0; i < convertedText.length; i++) {
         if(convertedText[i] === "-") {
-          this.binaryStr += "1";
+          this.binaryStr[0] += "1";
         } else if (convertedText[i] === ".") {
-          this.binaryStr += "0";
+          this.binaryStr[0] += "0";
         }
         else if (convertedText[i] === "/"){
-          this.binaryStr += " ";
+          this.binaryStr[0] += " ";
         }
       }
     },
