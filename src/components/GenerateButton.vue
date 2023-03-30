@@ -1,15 +1,12 @@
 <template>
   <div class="button-container">
-    <button @click="convertCode(textToConvert)">Generate chart</button>
+    <button @click="convertStr(textToConvert)">Generate chart</button>
   </div>
-  <div v-if="this.binaryStr[0].length > 0 && this.validInput === true">
+  <div v-if="this.binaryList[0].length > 0 && this.validInput === true">
     <h2>Code:</h2>
-    <p>
-      {{ this.convertedText }}
-    </p>
-    
+    <p>{{ this.displayCode }}</p>
     <h2>Chart:</h2>
-    <CreateChart :binaryList="binaryStr" />
+    <CreateChart :binaryList="binaryList" />
   </div>
   <div v-else-if="this.validInput === false">
     <h2>Error!</h2>
@@ -18,7 +15,9 @@
 </template>
 
 <script>
+//Component
 import CreateChart from './CreateChart.vue';
+//Json files
 import Morse from '../data/morse.json';
 import Braille from '../data/braille.json';
 
@@ -29,28 +28,29 @@ export default {
     userChoice: Number
   },
   watch: {
-    // whenever option changes, this function will run, ie changes between binary and morse code
+    // whenever option changes, convert to
     userChoice(newOption, oldOption) {
       if (newOption != oldOption) {
-        this.convertCode(this.textToConvert);
+        this.convertStr(this.textToConvert);
       }
     }
   },
   data() {
     return {
       validInput: Boolean,
-      convertedText: '',
-      binaryStr: [''],
+      binaryList: [''],
+      displayCode: '',
       morse: Morse,
       braille: Braille
     }
   },
   methods: {
-    convertCode(text) {
+    convertStr(text) {
       if (this.userChoice === 1) { 
         //Binary
         this.convertToBinary(text); 
-        //As most keyboard input can be translated to binary code, validation is not necessary. Thus, true.
+        //Most keyboard input can be translated to binary code.
+        //Validationnot necessary.
         this.validInput = true; 
       }
       else if (this.userChoice === 2) { 
@@ -68,38 +68,38 @@ export default {
     },
     convertToBinary(text) {
       /*Convert string to binary*/
-      this.binaryStr = [''];
+      this.binaryList = [''];
 
       for (var i = 0; i < text.length; i++) {
-        //Add binary code to binaryStr
-        this.binaryStr[0] += text[i].charCodeAt(0).toString(2).padStart(8, '0');
+        this.binaryList[0] += text[i].charCodeAt(0).toString(2).padStart(8, '0');
       }
     },
     convertToMorse(text) {
       /*Convert string to morse*/
-      this.binaryStr = [''];
+      this.binaryList = [''];
       //Create list from input text (hello => [h,e,l,l,o])
-      
       const textArray = text.toLowerCase().split(""); 
+
       for (var i = 0; i < textArray.length; i++) { 
-        //Add morse code to binaryStr
-        this.binaryStr[0] += this.morse[textArray[i]];
+        this.binaryList[0] += this.morse[textArray[i]];
       }
+
+      this.convertBinaryToStr(".", "-")
     },
     convertToBraille(text) {
        /*Convert string to braille*/
-      this.binaryStr = ['', '', ''];
+      this.binaryList = ['', '', ''];
+      //Create list from input text (hello => [h,e,l,l,o])
       const textArray = text.toLowerCase().split("");
 
       for(let i = 0; i < textArray.length; i++) {
         if (textArray[i] !== '\n') { 
-          //Divide text every second letter into a list, ie: [00,00,00]
+          //Divide text every second letter in text into a list, ie: "000000" => [00,00,00]
           let brailleList = (this.braille[textArray[i]]).match(/.{2}/g);
 
-          //Add braille binary to list
-          this.binaryStr[0] += brailleList[0]
-          this.binaryStr[1] += brailleList[1]
-          this.binaryStr[2] += brailleList[2]
+          this.binaryList[0] += brailleList[0]
+          this.binaryList[1] += brailleList[1]
+          this.binaryList[2] += brailleList[2]
         }
       }
     },
@@ -109,6 +109,17 @@ export default {
       */
       this.validInput = /^[A-Za-z\s]*$/.test(text);
       return this.validInput;
+    },
+    convertBinaryToStr(replaceZero, replaceOne) {
+
+      let string;
+
+      for(let i = 0; i < this.binaryList.length; i++) {
+        string = this.binaryList[0].replace(/0/g, replaceZero);
+        string = string.replace(/1/g, replaceOne);
+      }
+
+      this.displayCode = string;
     },
   },
   components: {

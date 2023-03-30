@@ -16,9 +16,6 @@
       <GenerateButton :textToConvert="text" :userChoice="clicked" />
     </div>
   </div>
-
-  
-
 </template>
   
 <script>
