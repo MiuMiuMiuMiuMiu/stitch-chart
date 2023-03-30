@@ -2,7 +2,7 @@
   <div class="button-container">
     <button @click="convertCode(textToConvert)">Generate chart</button>
   </div>
-  <div v-if="binaryStr[0] > 0 && this.validInput === true">
+  <div v-if="binaryStr[0].length > 0 && this.validInput === true">
     <h2>Code:</h2>
     <p>
       {{ this.convertedText }}
@@ -11,6 +11,7 @@
     <h2>Chart:</h2>
     <CreateChart :binaryList="binaryStr" />
   </div>
+
   <div v-else-if="this.validInput === false">
     <h2>Error!</h2>
     <p>Your input may only contain letters between a-z!</p>
@@ -88,6 +89,7 @@ export default {
           }
         }
         this.binaryStr = brailleBinary;
+
       }
     },
     convertToBinary(text) {
