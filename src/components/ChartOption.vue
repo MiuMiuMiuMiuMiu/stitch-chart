@@ -37,6 +37,10 @@ export default {
         {
           id: 2,
           option: "Morse"
+        },
+        {
+          id: 3,
+          option: "Braille"
         }
       ],
       clicked: NaN,
