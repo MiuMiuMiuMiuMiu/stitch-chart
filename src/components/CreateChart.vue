@@ -12,11 +12,7 @@
   </div> 
 
   <div id="grid" :style="gridStyle">
-<<<<<<< Updated upstream
-    <template v-for="(item, index) in text" :key="index">
-=======
     <template v-for="(item, index) in binaryList" :key="index">
->>>>>>> Stashed changes
 
       <template v-for="(i, index) in item" :key="index">
         <div v-if="i === '0'" class="grid-cell" v-bind:style="[{ 'background-color': '#264653' }]">
@@ -38,27 +34,19 @@ export default {
   },
   data() {
     return {
-<<<<<<< Updated upstream
-      columns: parseInt(this.text.length)
-=======
       columns: this.binaryList[0].length,
     }
   },
   methods: {
     printOut() {
       console.log(this.binaryList[0].length)
->>>>>>> Stashed changes
     }
   },
   computed: {
     gridStyle() {
       return {
-<<<<<<< Updated upstream
-        gridTemplateColumns: `repeat(${this.text.length}, 30px)`, //Amount of columns from length of text
-=======
         gridTemplateColumns: `repeat(${this.binaryList[0].length}, 30px)`, //Amount of columns from length of text
         gridTemplateRows: `repeat(${this.binaryList.length}, 30px)`
->>>>>>> Stashed changes
         //border: 'black solid 1px'
       }
     }
