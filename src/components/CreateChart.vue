@@ -12,9 +12,9 @@
   </div> 
 
   <div id="grid" :style="gridStyle">
-    <template v-for="(item, index) in binaryList" :key="index">
+    <template v-for="(item, key) in binaryList" :key="key">
 
-      <template v-for="(i, index) in item" :key="index">
+      <template v-for="(i, key) in item" :key="key">
         <div v-if="i === '0'" class="grid-cell" v-bind:style="[{ 'background-color': '#264653' }]">
         </div>
 

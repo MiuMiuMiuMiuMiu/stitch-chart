@@ -6,7 +6,7 @@
     <h2>Code:</h2>
     
     <div id="displayCodeContainer">
-      <template v-for="(line, index) in displayCode" :key="index">
+      <template v-for="(line, key) in displayCode" :key="key">
         <p>{{ line }}</p>
       </template>
     </div>
@@ -93,7 +93,6 @@ export default {
         this.binaryList[0] += this.morse[textArray[i]];
       }
 
-      this.displayCode = ['']
       this.convertBinaryToStr(".", "-")
     },
     convertToBraille(text) {
@@ -116,22 +115,23 @@ export default {
       this.convertBinaryToStr("•", "\u00A0")
     },
     validateInput(text) {
-      /*This function checks a string for whether it contains letters between a-z (both lower / uppercase). Includes empty spaces.
-        If string contain illegal characters, return false.
+      /*This function checks a string for whether it contains letters between a-z (both lower / uppercase).
+        If string contains illegal characters, return false.
       */
       this.validInput = /^[A-Za-z\s]*$/.test(text);
       return this.validInput;
     },
     convertBinaryToStr(replaceZero, replaceOne) {
+      /*
+      This function replaces the 0s and 1s in a list containing binary str
+      */
+      this.displayCode = ['']
       let string;
       for(let i = 0; i < this.binaryList.length; i++) {
         string = this.binaryList[i].replace(/0/g, replaceZero);
         string = string.replace(/1/g, replaceOne);
         this.displayCode[i] = string;
       }
-
-      console.log(this.displayCode)
-
     },
   },
   components: {
