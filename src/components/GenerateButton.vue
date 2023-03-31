@@ -138,7 +138,7 @@ export default {
       this.convertBinaryToStr("•", "\u00A0")
     },
     validateInput(text) {
-      /*This function checks a string for whether it contains letters between a-z (both lower / uppercase).
+      /*This function checks a string for whether it contains letters between a-ö (both lower / uppercase).
         If string contains illegal characters, return false.
       */
       this.validInput = /^[A-Öa-ö\s]*$/.test(text);
