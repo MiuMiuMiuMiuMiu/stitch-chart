@@ -27,4 +27,6 @@ npm run serve
 You should now be able to see the website running :)
 
 ## Built With
-* [Vue](https://vuejs.org/) - A frontend framework
+* [Vue](https://vuejs.org/) - A frontend framework.
+* [jsPdf](https://github.com/parallax/jsPDF) - A library to generate PDFs in JavaScript.
+* [html2canvas](https://vuejs.org/) - A library for taking screenshots with JavaScript.
