@@ -10,10 +10,10 @@ export default {
     name: "PDFButton",
     methods: {
         downloadPDF() {
-            console.log("You clicked me!")
-            window.scrollTo(0,0);
-            let pattern = document.querySelector("#pattern");            
-            html2canvas(pattern,  {scale: 2}).then(function(canvas) {
+            let pattern = document.querySelector("#pattern");
+            pattern.classList.add("rotatePattern");
+
+            html2canvas(pattern,  {scale: 3}).then(function(canvas) {
                 let base64image = canvas.toDataURL();
                 console.log(base64image);
                 /*
@@ -22,8 +22,16 @@ export default {
                 pdf.save('binary.pdf')
                 */
             });
+            
+            pattern.classList.remove("rotatePattern");
         }
     }
 }
 </script>
 
+<style>
+.rotatePattern {
+  transform: rotate(90deg);
+  width: max-content;
+}
+</style>

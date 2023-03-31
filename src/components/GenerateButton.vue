@@ -2,21 +2,22 @@
   <div class="button-container">
     <button @click="convertStr(textToConvert)">Generate chart</button>
   </div>
-  <div id="pattern" v-if="this.binaryList[0].length > 0 && this.validInput === true">
-    <h2>Code:</h2>
-    
-    <div id="displayCodeContainer">
-      <template v-for="(line, key) in displayCode" :key="key">
-        <p>{{ line }}</p>
-      </template>
+
+  <div v-if="this.binaryList[0].length > 0 && this.validInput === true">
+    <div id="pattern">
+      <h2>Code:</h2>
+
+      <div id="displayCodeContainer">
+        <template v-for="(line, key) in displayCode" :key="key">
+          <p>{{ line }}</p>
+        </template>
+      </div>
+
+      <h2>Chart:</h2>
+      <CreateChart :binaryList="binaryList" />
     </div>
-    
-    <h2>Chart:</h2>
-    <CreateChart :binaryList="binaryList" />
-    <PDFButton/>
+    <PDFButton />
   </div>
-  
-  
 
   <div v-if="this.validInput === false">
     <h2>Error!</h2>
@@ -58,20 +59,20 @@ export default {
   },
   methods: {
     convertStr(text) {
-      if (this.userChoice === 1) { 
+      if (this.userChoice === 1) {
         //Binary
-        this.convertToBinary(text); 
+        this.convertToBinary(text);
         //Most keyboard input can be translated to binary code.
         //Validationnot necessary.
-        this.validInput = true; 
+        this.validInput = true;
       }
-      else if (this.userChoice === 2) { 
+      else if (this.userChoice === 2) {
         //Morse
-        if (this.validateInput(text)) { 
-          this.convertToMorse(text); 
+        if (this.validateInput(text)) {
+          this.convertToMorse(text);
         }
       }
-      else { 
+      else {
         //Braille
         if (this.validateInput(text)) {
           this.convertToBraille(text);
@@ -93,22 +94,22 @@ export default {
       /*Convert string to morse*/
       this.binaryList = [''];
       //Create list from input text (hello => [h,e,l,l,o])
-      const textArray = text.toLowerCase().split(""); 
+      const textArray = text.toLowerCase().split("");
 
-      for (var i = 0; i < textArray.length; i++) { 
+      for (var i = 0; i < textArray.length; i++) {
         this.binaryList[0] += this.morse[textArray[i]];
       }
 
       this.convertBinaryToStr(".", "-")
     },
     convertToBraille(text) {
-       /*Convert string to braille*/
+      /*Convert string to braille*/
       this.binaryList = ['', '', ''];
       //Create list from input text (hello => [h,e,l,l,o])
       const textArray = text.toLowerCase().split("");
 
-      for(let i = 0; i < textArray.length; i++) {
-        if (textArray[i] !== '\n') { 
+      for (let i = 0; i < textArray.length; i++) {
+        if (textArray[i] !== '\n') {
           //Divide text every second letter in text into a list, ie: "000000" => [00,00,00]
           let brailleList = (this.braille[textArray[i]]).match(/.{2}/g);
 
@@ -133,7 +134,7 @@ export default {
       */
       this.displayCode = ['']
       let string;
-      for(let i = 0; i < this.binaryList.length; i++) {
+      for (let i = 0; i < this.binaryList.length; i++) {
         string = this.binaryList[i].replace(/0/g, replaceZero);
         string = string.replace(/1/g, replaceOne);
         this.displayCode[i] = string;
@@ -148,17 +149,16 @@ export default {
 </script>
 
 <style scope>
-
 p {
   word-break: break-all;
 }
 
 /*Display code*/
-#displayCodeContainer{
+#displayCodeContainer {
   margin-bottom: 30px;
 }
 
-#displayCodeContainer > p {
+#displayCodeContainer>p {
   margin: 0;
 }
 

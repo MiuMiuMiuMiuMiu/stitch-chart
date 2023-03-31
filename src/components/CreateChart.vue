@@ -1,32 +1,32 @@
 <template>
   <div class="stitch-container">
 
-      <div class="purl">
-      </div>
-      <p>Purl</p>
+    <div class="purl">
+    </div>
+    <p>Purl</p>
 
-      <div class="knit">
-      </div>
-      <p>Knit</p>
-    
-  </div> 
+    <div class="knit">
+    </div>
+    <p>Knit</p>
 
+  </div>
   <div id="grid-container">
     <div id="grid" :style="gridStyle">
-      <template v-for="(item, key) in binaryList" :key="key">
 
+      <template v-for="(item, key) in binaryList" :key="key">
         <template v-for="(i, key) in item" :key="key">
+
           <div v-if="i === '0'" class="grid-cell dark-blue">
           </div>
 
           <div v-else-if="i === '1'" class="grid-cell white">
           </div>
-        </template>
 
+        </template>
       </template>
+
     </div>
   </div>
-  
 </template>
 
 <script>
@@ -56,7 +56,7 @@ export default {
 
 #grid {
   display: inline-grid;
-  
+
   border-bottom: 1px solid black;
   border-left: 1px solid black;
 }
@@ -76,19 +76,16 @@ export default {
 }
 
 /*Scroll bar*/
-#grid-container::-webkit-scrollbar-track
-{
+#grid-container::-webkit-scrollbar-track {
   background-color: lightgray;
 }
 
-#grid-container::-webkit-scrollbar
-{
+#grid-container::-webkit-scrollbar {
   width: 1px;
   background-color: red;
 }
 
-#grid-container::-webkit-scrollbar-thumb
-{
+#grid-container::-webkit-scrollbar-thumb {
   background-color: grey;
 }
 
@@ -98,12 +95,15 @@ export default {
   display: flex;
   align-items: center;
 }
-.stitch-container > div {
- margin-right: 5px;
+
+.stitch-container>div {
+  margin-right: 5px;
 }
-.stitch-container > p {
- margin-right: 20px;
+
+.stitch-container>p {
+  margin-right: 20px;
 }
+
 .purl {
   width: 30px;
   height: 30px;
@@ -111,6 +111,7 @@ export default {
   background-color: #264653;
   margin-bottom: 2px;
 }
+
 .knit {
   width: 30px;
   height: 30px;
