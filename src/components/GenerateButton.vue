@@ -33,7 +33,7 @@
 
   <div v-if="this.validInput === false">
     <h2>Error!</h2>
-    <p>Your input may only contain letters between a-z!</p>
+    <p>Your input may only contain letters between a-ö!</p>
   </div>
 </template>
 
