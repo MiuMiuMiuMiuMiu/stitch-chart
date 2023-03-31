@@ -10,6 +10,7 @@
     <h2>Text:</h2>
     <div class="gauge-input">
       <textarea v-model="text" type="text" id="text" min="1" max="50"></textarea>
+      <p>{{ text.length }} </p>
     </div>
 
     <div class="generate-button">
@@ -28,7 +29,7 @@ export default {
     return {
       options: [
         {
-          id: 1,
+          id: 1, //aaaaaaaaaaaaaa
           option: "Binary"
         },
         {
@@ -42,6 +43,7 @@ export default {
       ],
       clicked: NaN,
       text: "",
+      maxInput: Number
     };
   },
   methods: {
@@ -50,6 +52,7 @@ export default {
     }
   },
   mounted() {
+    //Select binary option when website renders
     this.clicked = 1;
   }, 
   components: {
@@ -115,6 +118,10 @@ textarea {
   /*Remove default properties*/
   resize: none;
   outline: none;
+}
+
+.gauge-input > p {
+  float: right;
 }
 
 .selected {

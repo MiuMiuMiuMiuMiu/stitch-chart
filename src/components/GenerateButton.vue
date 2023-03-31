@@ -16,7 +16,19 @@
       <h2>Chart:</h2>
       <CreateChart :binaryList="binaryList" />
     </div>
-    <PDFButton />
+
+    <!-- 
+      html2canvas cannot screenshot anything over 14400x14400 userUnits.
+      154 grid cells equals 13923 userUnits.
+    -->
+    <div v-if="this.binaryList[0].length <= 154">
+      <PDFButton />
+    </div>
+    <div v-else>
+      <p>Unfortunately you cannot download charts with a more than 154 stitches on one row!</p>
+      <p>Your current stitch count: {{ this.binaryList[0].length }}</p>
+    </div>
+
   </div>
 
   <div v-if="this.validInput === false">
@@ -51,9 +63,13 @@ export default {
   data() {
     return {
       validInput: Boolean,
+      //Contains list(s) of binary code which is used to generate grid
       binaryList: [''],
+      //Used to display code in its original form
       displayCode: [''],
+      //Morse JSON
       morse: Morse,
+      //Braille JSON
       braille: Braille
     }
   },
@@ -65,17 +81,21 @@ export default {
         //Most keyboard input can be translated to binary code.
         //Validationnot necessary.
         this.validInput = true;
+
+        console.log(this.binaryList[0].length)
       }
       else if (this.userChoice === 2) {
         //Morse
         if (this.validateInput(text)) {
           this.convertToMorse(text);
+          console.log(this.binaryList[0].length)
         }
       }
       else {
         //Braille
         if (this.validateInput(text)) {
           this.convertToBraille(text);
+          console.log(this.binaryList[0].length)
         }
       }
     },
