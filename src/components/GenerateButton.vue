@@ -7,7 +7,7 @@
     <div id="pattern">
       <h2>Code:</h2>
 
-      <div id="displayCodeContainer">
+      <div id="displayCodeContainer" class="overflow">
         <template v-for="(line, key) in displayCode" :key="key">
           <p>{{ line }}</p>
         </template>
@@ -81,21 +81,17 @@ export default {
         //Most keyboard input can be translated to binary code.
         //Validationnot necessary.
         this.validInput = true;
-
-        console.log(this.binaryList[0].length)
       }
       else if (this.userChoice === 2) {
         //Morse
         if (this.validateInput(text)) {
           this.convertToMorse(text);
-          console.log(this.binaryList[0].length)
         }
       }
       else {
         //Braille
         if (this.validateInput(text)) {
           this.convertToBraille(text);
-          console.log(this.binaryList[0].length)
         }
       }
     },
@@ -200,5 +196,24 @@ button {
   display: flex;
   justify-content: center;
   margin-top: 10px;
+}
+
+/* overflow */
+
+.overflow {
+  overflow: auto;
+}
+
+.overflow::-webkit-scrollbar-track {
+  background-color: lightgray;
+}
+
+.overflow::-webkit-scrollbar {
+  width: 1px;
+  background-color: red;
+}
+
+.overflow::-webkit-scrollbar-thumb {
+  background-color: grey;
 }
 </style>
