@@ -6,12 +6,17 @@
   <div v-if="this.binaryList[0].length > 0 && this.validInput === true">
     <div id="pattern">
       <h2>Code:</h2>
+      <p>{{ textToConvert }}</p>
 
-      <div id="displayCodeContainer" class="overflow">
-        <template v-for="(line, key) in displayCode" :key="key">
-          <p>{{ line }}</p>
-        </template>
+      <h2>Code:</h2>
+      <div id="displayCodeContainer">
+        <div class="overflow">
+          <template v-for="(line, key) in displayCode" :key="key">
+            <p>{{ line }}</p>
+          </template>
+        </div>
       </div>
+      
 
       <h2>Chart:</h2>
       <CreateChart :binaryList="binaryList" />
@@ -169,13 +174,16 @@ p {
   word-break: break-all;
 }
 
-/*Display code*/
-#displayCodeContainer {
+/*Pattern*/
+
+#pattern > p:first-of-type {
   margin-bottom: 30px;
 }
 
-#displayCodeContainer>p {
-  margin: 0;
+/*Display code*/
+#displayCodeContainer {
+  margin-bottom: 30px;
+  overflow: auto;
 }
 
 /*Button*/
@@ -201,19 +209,23 @@ button {
 /* overflow */
 
 .overflow {
-  overflow: auto;
+  width: max-content;
 }
 
-.overflow::-webkit-scrollbar-track {
+.overflow > p{
+  margin: 0px;
+}
+
+#displayCodeContainer::-webkit-scrollbar-track {
   background-color: lightgray;
 }
 
-.overflow::-webkit-scrollbar {
+#displayCodeContainer::-webkit-scrollbar {
   width: 1px;
   background-color: red;
 }
 
-.overflow::-webkit-scrollbar-thumb {
+#displayCodeContainer::-webkit-scrollbar-thumb {
   background-color: grey;
 }
 </style>
