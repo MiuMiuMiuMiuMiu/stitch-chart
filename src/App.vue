@@ -1,19 +1,17 @@
 <template>
   <div>
     <PageHeader />
-    <ChartOption />
+    <router-view></router-view>
   </div>
   
 </template>
 
 <script>
-import ChartOption from './components/ChartOption.vue';
 import PageHeader from './components/PageHeader.vue';
 export default {
   name: 'App',
   components: {
     PageHeader,
-    ChartOption
   }
 }
 </script>

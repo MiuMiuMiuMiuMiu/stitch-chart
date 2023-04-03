@@ -5,7 +5,7 @@
 
   <div v-if="this.binaryList[0].length > 0 && this.validInput === true">
     <div id="pattern">
-      <h2>Code:</h2>
+      <h2>Message:</h2>
       <p>{{ textToConvert }}</p>
 
       <h2>Code:</h2>
