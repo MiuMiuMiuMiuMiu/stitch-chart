@@ -1,6 +1,9 @@
 <template>
     <div class="header">
+      <RouterLink to="/">
         <h1>Nerdy Stitch</h1>
+      </RouterLink>
+        
     </div>
 </template>
 
