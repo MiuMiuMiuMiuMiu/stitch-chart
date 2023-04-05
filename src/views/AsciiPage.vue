@@ -21,6 +21,10 @@ export default {
                 const imageDataUrl = reader.result;
                 const image = new Image();
                 image.src = imageDataUrl;
+
+                image.onload = () => {
+                    
+                }
                 // Use image processing library to convert image to ASCII art
                 //const asciiArt = convertToAsciiArt(imageDataUrl);
                 // Display the ASCII art on the webpage
