@@ -1,6 +1,6 @@
 <template>
     <div id="introduction">
-        <h1>"Nerdy Stitch - where technology meets crafting.</h1>
+        <h1>Nerdy Stitch - where technology meets crafting.</h1>
         <p>Our website lets you transform any text into Binary, Morse or Braille code, and creates a chart to help you stitch it onto your project.</p>
     </div>
     <div id="card-container">
