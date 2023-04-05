@@ -21,4 +21,11 @@ export default {
   color: white;
   margin-bottom: 60px;
 }
+
+.header > a:link, a:visited, a:hover{
+  color: white;
+  text-decoration: none;
+}
+
+
 </style>

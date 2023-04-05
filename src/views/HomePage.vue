@@ -1,12 +1,12 @@
 <template>
     <div id="introduction">
-        <h1>Welcome to Nerdy Stitch!</h1>
-        <p>Combine your computer nerdiness with your choice of handiwork!</p>
+        <h1>"Nerdy Stitch - where technology meets crafting.</h1>
+        <p>Our website lets you transform any text into Binary, Morse or Braille code, and creates a chart to help you stitch it onto your project.</p>
     </div>
     <div id="card-container">
         <div class="card">
             <h1>Code</h1>
-            <p>Translate a text to binary, morse or braille.</p>
+            <p>Translate your text into Binary, Morse, or Braille code and generate a chart.</p>
                 <RouterLink to="code">
                     <button>GO</button>
                 </RouterLink>
