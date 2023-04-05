@@ -11,6 +11,14 @@
                     <button>GO</button>
                 </RouterLink>
         </div>
+
+        <div class="card">
+            <h1>ASCII</h1>
+            <p>Upload an image to create ASCII Art and generate a chart for your chouce of craft.</p>
+                <RouterLink to="ascii">
+                    <button>GO</button>
+                </RouterLink>
+        </div>
     </div>
 </template>
 
@@ -50,6 +58,7 @@ export default {
     border: 2px solid #073b4c;
     width: 250px;
     padding: 20px;
+    margin: 10px;
 }
 
 .card > p {
