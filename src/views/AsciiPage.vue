@@ -40,13 +40,16 @@ export default {
                     const pixels = ctx.getImageData(0, 0, canvas.width, canvas.height);
                     console.log(pixels)
 
-                    //Convert to black and white 
+                    //Convert to black and white// 
                     let pixel = pixels.data;
+
                     // loop through all pixels
                     // each pixel is decomposed in its 4 rgba values
                     for (let i = 0; i < pixel.length; i += 4) {
+
                         // get the medium of the 3 first values ( (r+g+b)/3 )
                         let med = (pixel[i] + pixel[i + 1] + pixel[i + 2]) / 3;
+                        
                         // set it to each value (r = g = b = med)
                         pixel[i] = pixel[i + 1] = pixel[i + 2] = med;
                         // we don't touch the alpha
@@ -61,3 +64,10 @@ export default {
 }
 </script>
 
+
+<style>
+canvas {
+  width: 150px;
+}
+
+</style>
