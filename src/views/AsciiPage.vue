@@ -40,6 +40,7 @@ export default {
                     const pixels = ctx.getImageData(0, 0, canvas.width, canvas.height);
                     console.log(pixels)
 
+                    
                     //Convert to black and white// 
                     let pixel = pixels.data;
 
@@ -56,8 +57,40 @@ export default {
                     }
                     // redraw the new computed image
                     ctx.putImageData(pixels, 0, 0);
+                    
+
+                    let binaryCell = [];
+                    for(let y = 0; y < image.height; y += 250) {
+                        for (let x = 0; x < image.width; x += 250) {
+                            const posX = x * 4; // current position
+                            const posY = y * 4;
+                            const pos = (posY * image.width) + posX;
+
+                            const red = pixel[pos];
+                            const green = pixel[pos + 1];
+                            const blue = pixel[pos + 2];
+                            const total = red + green + blue;
+                            const averageColorValue = total/3;
+
+                            //console.log(averageColorValue);
+
+                            const symbol = this.convertToBinary(averageColorValue);
+                            binaryCell.push(symbol);
+                        }
+                    }
+
+                    console.log(binaryCell);
+
                 }
             };
+        },
+        convertToBinary(value) {
+            if (value > 125) {
+                return "0"
+            }
+            else {
+                return "1"
+            }
         }
 
     }
