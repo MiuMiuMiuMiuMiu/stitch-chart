@@ -1,15 +1,5 @@
 <template>
-  <div class="stitch-container">
 
-    <div class="purl">
-    </div>
-    <p>Purl</p>
-
-    <div class="knit">
-    </div>
-    <p>Knit</p>
-
-  </div>
   <div id="grid-container">
     <div id="grid" :style="gridStyle">
 
@@ -30,6 +20,8 @@
 </template>
 
 <script>
+//Component
+
 export default {
   name: 'CreateChart',
   props: {
@@ -89,33 +81,4 @@ export default {
   background-color: grey;
 }
 
-/*Stitch instructions*/
-.stitch-container {
-  margin-bottom: 30px;
-  display: flex;
-  align-items: center;
-}
-
-.stitch-container>div {
-  margin-right: 5px;
-}
-
-.stitch-container>p {
-  margin-right: 20px;
-}
-
-.purl {
-  width: 30px;
-  height: 30px;
-  border: 1px solid black;
-  background-color: #264653;
-  margin-bottom: 2px;
-}
-
-.knit {
-  width: 30px;
-  height: 30px;
-  border: 1px solid black;
-  background-color: white;
-}
 </style>
