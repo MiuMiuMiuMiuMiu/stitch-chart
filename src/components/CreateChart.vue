@@ -25,13 +25,17 @@
 export default {
   name: 'CreateChart',
   props: {
-    binaryList: Array
+    binaryList: Array,
+    pixelSize: {
+      default: 30,
+      type: Number
+    }
   },
   computed: {
     gridStyle() {
       return {
-        gridTemplateColumns: `repeat(${this.binaryList[0].length}, 30px)`, //Amount of columns from length of text
-        gridTemplateRows: `repeat(${this.binaryList.length}, 30px)`
+        gridTemplateColumns: `repeat(${this.binaryList[0].length}, ${this.pixelSize}px)`, //Amount of columns from length of text
+        gridTemplateRows: `repeat(${this.binaryList.length}, ${this.pixelSize}px)`
         //border: 'black solid 1px'
       }
     }

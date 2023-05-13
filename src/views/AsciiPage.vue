@@ -7,7 +7,7 @@
     <canvas id="canvas"></canvas>
 
     <div v-if="this.imageAscii.length > 0">
-        <CreateChart :binaryList="imageAscii" />
+        <CreateChart :binaryList="imageAscii" :pixelSize="10"/>
     </div>
     
 
@@ -27,7 +27,7 @@ export default {
         generateAsciiArt() {
             //Get canvas
             const canvas = document.getElementById("canvas");
-            const ctx = canvas.getContext("2d");
+            const ctx = canvas.getContext('2d', { willReadFrequently: true });
 
             // Read the contents of those image file    
             const input_image = this.$refs.image.files[0];
@@ -150,6 +150,6 @@ export default {
 
 <style>
 canvas {
-    width: 1000px;
+    width: 500px;
 }
 </style>
