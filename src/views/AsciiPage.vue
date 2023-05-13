@@ -1,5 +1,5 @@
 <template>
-    <h1>ASCII PAGE</h1>
+    <h1>Generate ASCII Art</h1>
     <form>
         <input type="file" id="file-input" ref="image">
         <button type="button" @click="generateAsciiArt">Generate ASCII Art</button>
@@ -66,12 +66,10 @@ export default {
 
                     //Fill canvas with cells
                     for (let i = 0; i < cells.length; i++) {
-                        ctx.font = "25px Verdana";
+                        ctx.font = "55px Verdana";
                         ctx.fillStyle = "black";
                         ctx.fillText(cells[i].symbol, cells[i].x, cells[i].y);
                     }
-                    
-                    
                 }
             };
         },
@@ -81,8 +79,8 @@ export default {
             //The cells are used to draw the ASCII art on the canvas
             let binaryCell = [];
 
-            for (let y = 0; y < height; y += 20) {
-                for (let x = 0; x < width; x += 20) {
+            for (let y = 0; y < height; y += 50) {
+                for (let x = 0; x < width; x += 50) {
                     const posX = x * 4; // current position
                     const posY = y * 4;
                     const pos = (posY * width) + posX;
@@ -108,9 +106,9 @@ export default {
             //Split by - into an array
             const binaryArray = binaryStr.split("-");
 
+            //Remove last empty list item
             binaryArray.pop();
 
-            console.log(binaryArray)
             //Set array
             this.imageAscii = binaryArray;
 
