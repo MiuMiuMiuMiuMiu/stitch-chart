@@ -5,7 +5,7 @@ import AsciiPage from '../views/AsciiPage'
 
 const routes = [
     { 
-        path: '/', 
+        path: '/stitch-chart/', 
         name: 'Home',
         component: HomePage 
     },
